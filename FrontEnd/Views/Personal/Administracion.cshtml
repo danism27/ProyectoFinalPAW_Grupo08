@@ -1,0 +1,228 @@
+﻿@model IEnumerable<FrontEnd.Models.Personal>
+@{
+    // *** CORREGIDO: Título y Layout ***
+    ViewData["Title"] = "Gestión de Personal";
+    // *** REVISAR: Asegúrate que el layout sea correcto para administración ***
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O _LayoutAdmin.cshtml si existe
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mb-5">Administración de Personal</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <form asp-controller="Personal" asp-action="Index" method="get" class="w-100 d-flex">
+                    <input type="text" name="buscar" class="form-control border-light" style="padding: 30px;" placeholder="Buscar por Nombre, Correo, Teléfono...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    @if (TempData["MensajeExito"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["MensajeExito"]
+        </div>
+    }
+    <h4 class="mb-4 text-primary">Lista de Personal</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Clínica</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No hay personal registrado</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var personal in Model)
+                {
+                    <tr>
+                        <td>@personal.Nombre @personal.Apellido</td>
+                        <td>@personal.Correo</td>
+                        <td>@personal.Telefono</td>
+                        <td>
+                            @(personal.IdClinicaNavigation?.Nombre ?? "N/A")
+                        </td>
+                        <td>
+                            @(personal.IdRolNavigation?.NombreRol ?? "N/A")
+                        </td>
+                        <td>
+                            <button class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal-@personal.IdPersonal" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button class="btn btn-link" data-toggle="modal" data-target="#detailsModalUpdate-@personal.IdPersonal" title="Editar Rol/Clínica">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-link" data-toggle="modal" data-target="#detailsModal-@personal.IdPersonal" title="Ver Detalles">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            @* <a asp-action="Edit" asp-controller="Personal" asp-route-id="@personal.IdPersonal" class="btn btn-link" title="Editar Completo"><i class="fas fa-user-edit"></i></a> *@
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="mt-4">
+        <a asp-action="Create" asp-controller="Personal" class="btn btn-success"><i class="fas fa-plus"></i> Registrar Nuevo Personal</a>
+    </div>
+</div>
+@foreach (var personal in Model)
+{
+    <div class="modal fade" id="deleteModal-@personal.IdPersonal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@personal.IdPersonal" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel-@personal.IdPersonal">Eliminar Personal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre completo:</strong> @personal.Nombre @personal.Apellido</p>
+                    <p><strong>Correo Electrónico:</strong> @personal.Correo</p>
+                    <p><strong>Teléfono:</strong> @personal.Telefono</p>
+                    <p><strong>Clínica:</strong> @(personal.IdClinicaNavigation?.Nombre ?? "N/A")</p>
+                    <p><strong>Rol:</strong> @(personal.IdRolNavigation?.NombreRol ?? "N/A")</p>
+                    <hr />
+                    <h5 class="text-danger">¿Seguro que desea eliminar este miembro del personal?</h5>
+                    <form asp-action="Delete" asp-controller="Personal" method="post">
+                        <input type="hidden" name="id" value="@personal.IdPersonal" />
+                        <button type="submit" class="btn btn-danger">Eliminar Personal</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailsModalUpdate-@personal.IdPersonal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabelUpdate-@personal.IdPersonal" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabelUpdate-@personal.IdPersonal">Actualizar Clínica/Rol de @personal.Nombre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateForm-@personal.IdPersonal" method="post">
+                        <input type="hidden" name="IdPersonal" value="@personal.IdPersonal" />
+                        <div class="form-group">
+                            <label for="Nombre-@personal.IdPersonal">Nombre</label>
+                            <input type="text" class="form-control" id="Nombre-@personal.IdPersonal" name="Nombre" value="@personal.Nombre @personal.Apellido" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="ClinicaId-@personal.IdPersonal">Clínica</label>
+                            @if (ViewBag.Clinicas != null) // Espera ViewBag.Clinicas
+                            {
+                                <select class="form-control" id="ClinicaId-@personal.IdPersonal" name="IdClinica" required>
+                                    <option value="">-- Seleccione Clínica --</option>
+                                    @foreach (var clinica in ViewBag.Clinicas as List<Clinica>) // Itera sobre Clinica
+                                    {
+                                        // Usa clinica.IdClinica y clinica.Nombre
+                                        <option value="@clinica.IdClinica" selected="@(personal.IdClinica == clinica.IdClinica)">
+                                            @clinica.Nombre
+                                        </option>
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <p class="text-danger">No hay clínicas disponibles.</p>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="RolId-@personal.IdPersonal">Rol</label>
+                            @if (ViewBag.Roles != null)
+                            {
+                                <select class="form-control" id="RolId-@personal.IdPersonal" name="IdRol" required>
+                                    <option value="">-- Seleccione Rol --</option>
+                                    @foreach (var rol in ViewBag.Roles as List<Rol>) // Itera sobre Rol
+                                    {
+                                        // Usa rol.IdRol y rol.NombreRol
+                                        <option value="@rol.IdRol" selected="@(personal.IdRol == rol.IdRol)">
+                                            @rol.NombreRol
+                                        </option>
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <p class="text-danger">No hay roles disponibles.</p>
+                            }
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="submitForm(@personal.IdPersonal)">Actualizar Información</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailsModal-@personal.IdPersonal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@personal.IdPersonal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles del Personal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre completo:</strong> @personal.Nombre @personal.Apellido</p>
+                    <p><strong>Correo Electrónico:</strong> @personal.Correo</p>
+                    <p><strong>Teléfono:</strong> @personal.Telefono</p>
+                    <p><strong>Clínica:</strong> @(personal.IdClinicaNavigation?.Nombre ?? "N/A")</p>
+                    <p><strong>Rol:</strong> @(personal.IdRolNavigation?.NombreRol ?? "N/A")</p>
+                    @* Podrías añadir más detalles si los tuvieras en el modelo Personal *@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    <script>
+        // *** CORREGIDO: submitForm usa IdPersonal y apunta a PersonalController ***
+        function submitForm(IdPersonal) {
+            var form = $('#updateForm-' + IdPersonal);
+            $.ajax({
+                type: 'POST',
+                // *** CORREGIDO: URL de la acción AJAX para actualizar ***
+                url: '@Url.Action("UpdateInfo", "Personal")', // Ajusta el nombre de la acción si es diferente
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.success) { // Asume que la acción devuelve { success: true/false, message: "..." }
+                        alert(response.message || "Información actualizada correctamente.");
+                        location.reload(); // Recarga la página para ver los cambios
+                    } else {
+                        alert('Error: ' + (response.message || "No se pudo actualizar la información."));
+                    }
+                },
+                error: function (xhr, status, error) {
+                     console.error("Error AJAX:", status, error);
+                     console.error("Response:", xhr.responseText);
+                    alert('Error de comunicación al actualizar la información.');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Pagos";
+    Layout = "~/Views/Shared/_LayoutClientes.cshtml"; // Asumiendo que este Layout sigue siendo relevante
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mb-4">Mis Citas</h1> @* Texto actualizado *@
+        <h4 class="text-primary display-3 mb-5">Historial de mis Pagos</h4> @* Texto mantenido *@
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Pagos</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Cita</th> @* Cabecera actualizada *@
+                <th>Fecha de Pago</th>
+                <th>Estado</th>
+                <th>Monto</th>
+                <th>Método Pago</th> @* Columna añadida para info extra *@
+            </tr>
+        </thead>
+        <tbody id="tablaPagosBody">
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        cargarPagos();
+    });
+
+    function cargarPagos() {
+        // Asegúrate que este endpoint devuelve los datos necesarios, incluyendo idCita
+        // y preferiblemente un estadoPago calculado.
+        $.ajax({
+            url: "/UsuarioCliente/ObtenerPagosPorUsuario",
+            type: "GET",
+            success: function (data) {
+                console.log("Datos recibidos:", data);
+
+                var tableBody = $("#tablaPagosBody");
+                tableBody.empty();
+
+                if (!data || data.length === 0) {
+                    console.warn("No se encontraron pagos.");
+                    // Ajustar colspan al nuevo número de columnas (5)
+                    tableBody.append("<tr><td colspan='5' class='text-center'>No hay pagos registrados.</td></tr>");
+                    return;
+                }
+
+                data.forEach(function (pago) {
+                    console.log("Procesando pago:", pago);
+
+                    // --- Lógica de Estado de Pago ---
+                    // Idealmente, el backend debería enviar un campo 'estadoPago'.
+                    // Como fallback, inferimos un estado basado en fechaPago.
+                    let estadoPagoTexto = "Pendiente";
+                    let estadoColor = "#9E1218"; // Color para Pendiente (rojo oscuro)
+
+                    // Asumiendo que el endpoint devuelve fechaPago como string ISO o similar
+                    if (pago.fechaPago) {
+                         try {
+                             // Verificar si la fecha es válida y no es una fecha mínima por defecto
+                             let fecha = new Date(pago.fechaPago);
+                             if (!isNaN(fecha) && fecha.getFullYear() > 1900) {
+                                estadoPagoTexto = "Realizado";
+                                estadoColor = "#1F1F2E"; // Color para Realizado (negro/azul oscuro)
+                             }
+                         } catch (e) {
+                             console.error("Error al parsear fecha de pago:", pago.fechaPago, e);
+                         }
+                    }
+                    // --- Fin Lógica Estado ---
+
+
+                    // --- Formateo de Fecha ---
+                    let fechaFormateada = "Sin registrar";
+                    if (pago.fechaPago) {
+                        try {
+                            let fecha = new Date(pago.fechaPago);
+                             if (!isNaN(fecha) && fecha.getFullYear() > 1900) {
+                                // Formato dd/MM/yyyy HH:mm (o el que prefieras)
+                                fechaFormateada = fecha.toLocaleDateString('es-CR', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' +
+                                                  fecha.toLocaleTimeString('es-CR', { hour: '2-digit', minute: '2-digit', hour12: false });
+                            }
+                        } catch (e) {
+                             console.error("Error al formatear fecha de pago:", pago.fechaPago, e);
+                        }
+                    }
+                    // --- Fin Formateo Fecha ---
+
+                    // Construcción de la fila de la tabla
+                    // Usar pago.idCita en lugar de pago.numeroRegistro
+                    // Añadir pago.metodoPago si está disponible
+                    let row = `<tr>
+                                   <td>${pago.idCita || "N/A"}</td>
+                                   <td>${fechaFormateada}</td>
+                                   <td><strong style="color: ${estadoColor};">${estadoPagoTexto}</strong></td>
+                                   <td>₡${(pago.monto != null ? parseFloat(pago.monto).toFixed(2) : "0.00").replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                                   <td>${pago.metodoPago || "-"}</td>
+                               </tr>`;
+
+                    tableBody.append(row);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("Error en la petición AJAX:", error);
+                console.error("Respuesta del servidor:", xhr.responseText);
+                 var tableBody = $("#tablaPagosBody");
+                 tableBody.empty();
+                 // Ajustar colspan al nuevo número de columnas (5)
+                tableBody.append("<tr><td colspan='5' class='text-center text-danger'>Error al cargar los pagos. Ver consola para detalles.</td></tr>");
+                // alert("Error al cargar los pagos."); // Considera mostrar el error de forma menos intrusiva
+            }
+        });
+    }
+</script>

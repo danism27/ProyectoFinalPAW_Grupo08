@@ -1,0 +1,164 @@
+﻿@model IEnumerable<FrontEnd.Models.Cita>
+@{
+    // *** CORREGIDO: Título y Layout ***
+    ViewData["Title"] = "Gestión de Citas Asignadas";
+    // *** REVISAR: Asegúrate que el nombre del Layout sea correcto para Personal ***
+    Layout = "~/Views/Shared/_LayoutPersonal.cshtml"; // O el layout que corresponda
+
+    // Define los estados relevantes para esta vista (citas activas asignadas)
+    var estadosGestionables = new[] { "Programada", "En Clinica" };
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Clínica Veterinaria</h1>
+        <h1 class="text-white display-3 mb-5">Gestión de Citas</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <form asp-controller="Cita" asp-action="GestionCitasAsignadas" method="get" class="w-100 d-flex">
+                    <input type="text" name="buscar" class="form-control border-light" style="padding: 30px;" placeholder="Buscar por ID Cita, Propietario...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Citas Asignadas (@string.Join(" / ", estadosGestionables))</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Cita</th>
+                <th>Clínica Origen</th>
+                <th>Propietario</th>
+                <th>Teléfono Prop.</th>
+                <th>Fecha/Hora Cita</th>
+                <th>Motivo Consulta</th>
+                <th>Estado Cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any()) // Ya deberían estar filtradas por el controlador, pero doble check
+            {
+                <tr>
+                    <td colspan="8" class="text-center text-muted">No tiene citas asignadas en estos estados</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var cita in Model) // Asume que el modelo ya viene filtrado por el controlador
+                {
+                    <tr>
+                        <td>@cita.IdCita</td>
+                        <td>@(cita.IdClinicaOrigenNavigation?.Nombre ?? "N/A")</td>
+                        <td>@(cita.IdPropietarioNavigation != null ? $"{cita.IdPropietarioNavigation.Nombre} {cita.IdPropietarioNavigation.Apellido}" : "N/A")</td>
+                        <td>@(cita.IdPropietarioNavigation?.Telefono ?? "N/A")</td>
+                        <td>@(cita.FechaHoraCita?.ToString("g") ?? "Fecha no disponible")</td>
+                        <td>@(cita.MotivoConsulta ?? "N/A")</td>
+                        <td>
+                            <strong style="color:
+                        @(cita.EstadoCita == "Pendiente" ? "#757575" :
+                          cita.EstadoCita == "Programada" ? "#007bff" :
+                          cita.EstadoCita == "En Clinica" ? "#ffc107" :
+                          cita.EstadoCita == "Completada" ? "#28a745" :
+                          cita.EstadoCita == "Cancelada" ? "#dc3545" : "#000")">
+                                @(cita.EstadoCita ?? "N/A")
+                            </strong>
+                        </td>
+                        <td>
+                            <button class="btn btn-link" data-toggle="modal" data-target="#detailsModalUpdate-@cita.IdCita" title="Actualizar Estado/Detalles">
+                                <i class="fas fa-edit"></i>
+                            </button>
+
+                            <div class="modal fade" id="detailsModalUpdate-@cita.IdCita" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Actualizar Estado/Detalles Cita ID: @cita.IdCita</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h5>Detalles de la Cita</h5>
+                                                    <p><strong>ID Cita:</strong> @cita.IdCita</p>
+                                                    <p><strong>Fecha/Hora:</strong> @(cita.FechaHoraCita?.ToString("g") ?? "N/A")</p>
+                                                    <p><strong>Motivo Consulta:</strong> @(cita.MotivoConsulta ?? "N/A")</p>
+                                                    <p><strong>Peso Mascota (kg):</strong> @(cita.PesoMascota?.ToString("N2") ?? "N/A")</p>
+                                                    <p><strong>Detalles Mascota:</strong> @(cita.DetallesMascota ?? "N/A")</p>
+                                                    <p><strong>Estado Actual:</strong> @(cita.EstadoCita ?? "N/A")</p>
+                                                    <hr>
+                                                    <h5>Detalles del Propietario</h5>
+                                                    @if (cita.IdPropietarioNavigation != null)
+                                                    {
+                                                        var propietario = cita.IdPropietarioNavigation;
+                                                        <p><strong>Nombre:</strong> @propietario.Nombre @propietario.Apellido</p>
+                                                        <p><strong>Teléfono:</strong> @(propietario.Telefono ?? "N/A")</p>
+                                                        <p><strong>Correo:</strong> @(propietario.Correo ?? "N/A")</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text-danger">No se encontró el propietario asignado.</p>
+                                                    }
+                                                </div>
+                                                <div class="col-md-6 border-left">
+                                                    <h5>Actualizar Estado</h5>
+                                                    <form asp-action="Edit" asp-controller="Cita" method="post">
+                                                        <input type="hidden" name="IdCita" value="@cita.IdCita" />
+                                                        <input type="hidden" name="IdPropietario" value="@cita.IdPropietario" />
+                                                        <input type="hidden" name="IdClinicaOrigen" value="@cita.IdClinicaOrigen" />
+                                                        <input type="hidden" name="IdClinicaDestino" value="@cita.IdClinicaDestino" />
+                                                        <input type="hidden" name="MotivoConsulta" value="@cita.MotivoConsulta" />
+                                                        <input type="hidden" name="PesoMascota" value="@cita.PesoMascota" />
+                                                        <input type="hidden" name="DetallesMascota" value="@cita.DetallesMascota" />
+                                                        <input type="hidden" name="FechaHoraCita" value="@cita.FechaHoraCita?.ToString("o")" /> <input type="hidden" name="IdVeterinarioAsignado" value="@cita.IdVeterinarioAsignado" />
+                                                        @* foreach(var asignacion in cita.CitaPersonalClinicas) *@
+                                                        @* { *@
+                                                        @* <input type="hidden" name="PersonalIds" value="@asignacion.IdPersonal" /> *@
+                                                        @* } *@
+
+
+                                                        <div class="form-group">
+                                                            <label for="EstadoCita-@cita.IdCita">Nuevo Estado:</label>
+                                                            <select name="EstadoCita" id="EstadoCita-@cita.IdCita" class="form-control">
+                                                                <option value="@cita.EstadoCita" selected>@cita.EstadoCita (Actual)</option>
+                                                                @if (cita.EstadoCita != "En Clinica")
+                                                                {
+                                                                    <option value="En Clinica">En Clinica</option>
+                                                                }
+                                                                @if (cita.EstadoCita != "Completada")
+                                                                {
+                                                                    <option value="Completada">Completada</option>
+                                                                }
+                                                                @if (cita.EstadoCita != "Cancelada")
+                                                                {
+                                                                    <option value="Cancelada">Cancelada</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <hr />
+                                                        <button type="submit" class="btn btn-primary">Actualizar Estado</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form asp-action="HistorialCitas" asp-controller="Cita" method="get" style="display: inline;" title="Ver Historial">
+                                <input type="hidden" name="id" value="@cita.IdCita" />
+                                <button type="submit" class="btn btn-link"><i class="fas fa-history"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

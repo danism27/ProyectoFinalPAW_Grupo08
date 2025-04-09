@@ -1,0 +1,181 @@
+﻿@* Modelo cambiado a IEnumerable<Cita> para representar la lista de citas del propietario.
+   Asegúrate de que las propiedades de navegación (IdClinicaDestinoNavigation, IdPropietarioNavigation, etc.)
+   Y la colección Pagos (si usas la lógica de Estado Pago)
+   se carguen (Eager Loading con .Include()) en el controlador que devuelve este modelo. *@
+@model IEnumerable<FrontEnd.Models.Cita>
+@{
+    ViewData["Title"] = "Citas Pendientes/Confirmadas";
+    Layout = "~/Views/Shared/_LayoutPropietarios.cshtml"; // Actualizado Layout
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h4 class="text-white display-3 mb-4">Mis Mascotas</h4>
+        <h4 class="text-primary display-3 mb-5">Mis Citas Pendientes</h4>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                @* Controlador actualizado a Propietario *@
+                <form asp-controller="Propietario" asp-action="CitasPendientes" method="get" class="w-100 d-flex">
+                    <input type="text" name="buscarCitaId" class="form-control border-light" style="padding: 30px;" placeholder="ID Cita">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar Cita</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Citas Pendientes/Confirmadas</h4>
+                    @* Contar citas con estado 'Pendiente' o 'Confirmada' (Asegúrate que el Modelo las incluya) *@
+                    <h1 class="text-primary mb-2" data-toggle="counter-up">@Model.Count(c => c.EstadoCita == "Pendiente" || c.EstadoCita == "Confirmada")</h1>
+                    @* Enlace actualizado a Propietario/Citas *@
+                    <a href="@Url.Action("Citas","Propietario")" class="btn btn-outline-dark btn-sm mt-2">Ver Todas las Citas</a>
+                    <ul class="list-inline row mt-4">
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => c.EstadoCita == "Confirmada")</h5>
+                            <p class="mb-0 text-muted">Confirmadas</p>
+                        </li>
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => c.EstadoCita == "Pendiente")</h5>
+                            <p class="mb-0 text-muted">Pendientes</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Citas Pendientes/Confirmadas</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Cita</th>
+                <th>Clínica Destino</th>
+                <th>Propietario</th>
+                <th>Motivo Consulta</th>
+                <th>Fecha y Hora</th>
+                <th>Veterinario Asignado</th>
+                <th>Estado Pago</th> @* Columna mantenida, depende de Pagos *@
+                <th>Estado Cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="9" class="text-center text-muted">No hay citas pendientes o confirmadas</td>
+                </tr>
+            }
+            else
+            {
+                @* IMPORTANTE: Filtrar en el controlador (p.ej. context.Citas.Where(...)) es MÁS EFICIENTE que filtrar aquí en la vista.
+                   Si el modelo ya viene filtrado del controlador, puedes quitar este .Where(). *@
+                @foreach (var cita in Model.Where(c => c.EstadoCita == "Confirmada" || c.EstadoCita == "Pendiente"))
+                {
+                    <tr>
+                        <td>@cita.IdCita</td>
+                        <td>@(cita.IdClinicaDestinoNavigation?.Nombre ?? "N/A")</td>
+                        <td>@(cita.IdPropietarioNavigation?.Nombre ?? "") @(cita.IdPropietarioNavigation?.Apellido ?? "")</td>
+                        <td>@cita.MotivoConsulta</td>
+                        <td>@(cita.FechaHoraCita?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                        <td>@(cita.IdVeterinarioAsignadoNavigation?.Nombre ?? "") @(cita.IdVeterinarioAsignadoNavigation?.Apellido ?? "No asignado")</td>
+                        <td>
+                            @{
+                                // **REQUISITO**: La colección 'cita.Pagos' debe cargarse en el controlador (.Include(c => c.Pagos)).
+                                bool tienePago = cita.Pagos?.Any() ?? false;
+                                string estadoPago = tienePago ? "Realizado" : "Pendiente";
+                                string colorPago = tienePago ? "#28a745" : "#dc3545"; // Verde si hay pago, Rojo si no
+                            }
+                            <strong style="color: @colorPago;">@estadoPago</strong>
+                        </td>
+                        <td>
+                            @{
+                                var estado = cita.EstadoCita ?? "Desconocido";
+                                // Ajusta colores si es necesario
+                                var color = estado == "Confirmada" ? "#007bff" : (estado == "Pendiente" ? "#ffc107" : "#6c757d"); // Azul=Confirmada, Amarillo=Pendiente, Gris=Otro
+                            }
+                            <strong style="color: @color;">@estado</strong>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-link text-info" data-toggle="modal" data-target="#detailsModal-@cita.IdCita" title="Ver Detalles">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+
+                                <div class="modal fade" id="detailsModal-@cita.IdCita" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@cita.IdCita" aria-hidden="true">
+                                    <div class="modal-dialog modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="detailsModalLabel-@cita.IdCita">Detalles de la Cita</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>ID Cita:</strong> @cita.IdCita</p>
+                                                <p><strong>Propietario:</strong> @(cita.IdPropietarioNavigation?.Nombre ?? "") @(cita.IdPropietarioNavigation?.Apellido ?? "")</p>
+                                                <p><strong>Correo Propietario:</strong> @(cita.IdPropietarioNavigation?.Correo ?? "N/A")</p>
+                                                <p><strong>Clínica Origen:</strong> @(cita.IdClinicaOrigenNavigation?.Nombre ?? "N/A")</p>
+                                                <p><strong>Clínica Destino:</strong> @(cita.IdClinicaDestinoNavigation?.Nombre ?? "N/A")</p>
+                                                <p><strong>Fecha y Hora:</strong> @(cita.FechaHoraCita?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</p>
+                                                <p><strong>Motivo Consulta:</strong> @cita.MotivoConsulta</p>
+                                                <p><strong>Detalles Mascota:</strong> @cita.DetallesMascota</p>
+                                                <p><strong>Peso Mascota:</strong> @cita.PesoMascota?.ToString("N2") kg</p>
+                                                <p><strong>Estado Cita:</strong> @(cita.EstadoCita ?? "N/D")</p>
+                                                <p><strong>Veterinario Asignado:</strong> @(cita.IdVeterinarioAsignadoNavigation?.Nombre ?? "") @(cita.IdVeterinarioAsignadoNavigation?.Apellido ?? "No asignado")</p>
+                                                @* Re-calculamos estadoPago aquí también, necesita Pagos cargados *@
+                                                @{
+                                                    bool tienePagoModal = cita.Pagos?.Any() ?? false;
+                                                    string estadoPagoModal = tienePagoModal ? "Realizado" : "Pendiente";
+                                                }
+                                                <p><strong>Estado Pago:</strong> @estadoPagoModal</p>
+                                                <hr />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @* Controlador actualizado a Propietario *@
+                                <form asp-action="HistorialCita" asp-controller="Propietario" method="get" style="display: inline;">
+                                    <input type="hidden" name="idCita" value="@cita.IdCita" />
+                                    <button type="submit" class="btn btn-link text-secondary" title="Ver Historial">
+                                        <i class="fas fa-history"></i>
+                                    </button>
+                                </form>
+
+                                @* Botón Cancelar (Ejemplo) - Controlador actualizado a Propietario *@
+                                @if (cita.EstadoCita == "Confirmada" || cita.EstadoCita == "Pendiente")
+                                {
+                                    <form asp-action="CancelarCita" asp-controller="Propietario" method="post" style="display: inline;">
+                                        <input type="hidden" name="idCita" value="@cita.IdCita" />
+                                        <button type="submit" class="btn btn-link text-danger" title="Cancelar Cita" onclick="return confirm('¿Está seguro de que desea cancelar esta cita?');">
+                                            <i class="fas fa-times-circle"></i>
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @* Añadir aquí scripts específicos si son necesarios *@
+}

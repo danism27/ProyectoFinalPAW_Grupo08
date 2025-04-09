@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Ubicación de Clínicas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Header Start -->
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Clínicas Veterinarias</h1>
+        <h1 class="text-white display-3 mb-5">Localización y Rutas</h1>
+    </div>
+</div>
+<!-- Header End -->
+<!-- Buscar Rutas entre Clínicas Start -->
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Buscar Ruta entre Clínicas</h4>
+
+    <form id="routesForm">
+        <div class="form-group">
+            <label for="origin">Clínica de origen:</label>
+            <input type="text" class="form-control" id="origin" name="origin" placeholder="Ejemplo: Clínica Principal San José" required>
+        </div>
+        <div class="form-group">
+            <label for="destination">Clínica de destino:</label>
+            <input type="text" class="form-control" id="destination" name="destination" placeholder="Ejemplo: Clínica Sucursal Alajuela" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Calcular Ruta</button>
+    </form>
+
+    <div id="map" style="height: 500px; width: 100%; margin-top: 20px;"></div>
+
+    <script>
+        let map;
+        let directionsRenderer;
+        let autocompleteOrigin;
+        let autocompleteDestination;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 9.7489, lng: -83.7534 },
+                zoom: 8,
+            });
+
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            autocompleteOrigin = new google.maps.places.Autocomplete(
+                document.getElementById("origin")
+            );
+            autocompleteDestination = new google.maps.places.Autocomplete(
+                document.getElementById("destination")
+            );
+        }
+
+        async function calculateAndDisplayRoute() {
+            const apiKey = "AIzaSyDC8ZJMw9pqASh8A6OkkUdB3vvXFCB5H4A";
+            const requestUrl = `https://routes.googleapis.com/directions/v2:computeRoutes?key=${apiKey}`;
+
+            const origin = document.getElementById("origin").value;
+            const destination = document.getElementById("destination").value;
+
+            const requestBody = {
+                origin: { address: origin },
+                destination: { address: destination },
+                travelMode: "DRIVE",
+                routingPreference: "TRAFFIC_AWARE_OPTIMAL"
+            };
+
+            try {
+                const response = await fetch(requestUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-Goog-FieldMask": "routes"
+                    },
+                    body: JSON.stringify(requestBody),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error("Error al calcular la ruta: " + (errorData.error?.message || "Desconocido"));
+                }
+
+                const data = await response.json();
+                const route = data.routes[0];
+                const path = route.polyline.encodedPolyline;
+                const decodedPath = google.maps.geometry.encoding.decodePath(path);
+
+                const routePath = new google.maps.Polyline({
+                    path: decodedPath,
+                    geodesic: true,
+                    strokeColor: "#28a745",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                });
+
+                routePath.setMap(map);
+
+                const bounds = new google.maps.LatLngBounds();
+                decodedPath.forEach((point) => bounds.extend(point));
+                map.fitBounds(bounds);
+
+                const km = route.distanceMeters / 1000;
+                const min = parseFloat(route.duration.replace("s", "")) / 60;
+                const hr = min / 60;
+
+                alert(`Distancia: ${km.toFixed(2)} km\nDuración aproximada: ${min.toFixed(2)} min (${hr.toFixed(2)} hr)`);
+            } catch (error) {
+                alert("Error al calcular la ruta: " + error.message);
+            }
+        }
+
+        document.getElementById("routesForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            calculateAndDisplayRoute();
+        });
+
+        function loadGoogleMapsScript() {
+            const script = document.createElement("script");
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDC8ZJMw9pqASh8A6OkkUdB3vvXFCB5H4A&callback=initMap&libraries=places,geometry`;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+
+        window.onload = loadGoogleMapsScript;
+    </script>
+</div>
+<!-- Buscar Rutas entre Clínicas End -->

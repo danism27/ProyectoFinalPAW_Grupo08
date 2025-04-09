@@ -1,0 +1,126 @@
+﻿@model IEnumerable<FrontEnd.Models.Propietario>
+@{
+    // *** CORREGIDO: Título y Layout ***
+    ViewData["Title"] = "Gestión de Propietarios";
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O un layout de Admin si aplica
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mb-5">Administración de Propietarios</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <form asp-controller="Propietario" asp-action="Index" method="get" class="w-100 d-flex">
+                    <input type="text" name="buscar" class="form-control border-light" style="padding: 30px;" placeholder="Buscar por Nombre, Apellido, Correo...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    @if (TempData["MensajeExito"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["MensajeExito"]
+        </div>
+    }
+    <h4 class="mb-4 text-primary">Lista de Propietarios</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No hay propietarios registrados</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var propietario in Model)
+                {
+                    <tr>
+                        <td>@propietario.Nombre @propietario.Apellido</td>
+                        <td>@propietario.Correo</td>
+                        <td>@(propietario.Telefono ?? "N/A")</td>
+                        <td>
+                            <button class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal-@propietario.IdPropietario" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button class="btn btn-link" data-toggle="modal" data-target="#detailsModal-@propietario.IdPropietario" title="Ver Detalles">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <a asp-action="Edit" asp-controller="Propietario" asp-route-id="@propietario.IdPropietario" class="btn btn-link" title="Editar Propietario">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="mt-4">
+        <a asp-action="Create" asp-controller="Propietario" class="btn btn-success"><i class="fas fa-plus"></i> Registrar Nuevo Propietario</a>
+    </div>
+</div>
+@foreach (var propietario in Model)
+{
+    <div class="modal fade" id="detailsModal-@propietario.IdPropietario" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@propietario.IdPropietario" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalles del Propietario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>ID:</strong> @propietario.IdPropietario</p>
+                    <p><strong>Nombre:</strong> @propietario.Nombre @propietario.Apellido</p>
+                    <p><strong>Correo Electrónico:</strong> @propietario.Correo</p>
+                    <p><strong>Teléfono:</strong> @(propietario.Telefono ?? "N/A")</p>
+                    <p><strong>Rol:</strong> @(propietario.Rol?.NombreRol ?? "N/A")</p>
+                    @* Eliminar campos inexistentes como Cédula, dirección completa, etc. *@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal-@propietario.IdPropietario" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@propietario.IdPropietario" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel-@propietario.IdPropietario">Eliminar Propietario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre:</strong> @propietario.Nombre @propietario.Apellido</p>
+                    <p><strong>Correo:</strong> @propietario.Correo</p>
+                    <p><strong>Teléfono:</strong> @(propietario.Telefono ?? "N/A")</p>
+                    <hr />
+                    <h5 class="text-danger">¿Seguro que desea eliminar este propietario?</h5>
+                    <p class="text-warning"><small>Nota: Eliminar un propietario puede causar problemas si tiene citas asociadas.</small></p>
+                    <form asp-action="Delete" asp-controller="Propietario" method="post">
+                        <input type="hidden" name="id" value="@propietario.IdPropietario" />
+                        <button type="submit" class="btn btn-danger">Eliminar Propietario</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

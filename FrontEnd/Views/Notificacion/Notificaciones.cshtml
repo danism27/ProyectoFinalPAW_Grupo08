@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FrontEnd.Models.Notificacion>
+@{
+    ViewData["Title"] = "Notificaciones";
+    var usuarioRol = Context.Session.GetString("UsuarioRol");
+
+    if (usuarioRol != null && usuarioRol == "3")
+    {
+        Layout = "~/Views/Shared/_LayoutTransportistas.cshtml";
+    }
+    else if (usuarioRol != null)
+    {
+        Layout = "~/Views/Shared/_LayoutUsuarios.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutClientes.cshtml";
+    }
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Notificaciones Recientes</h1>
+        <h1 class="text-white display-3 mb-5">Mantente informado</h1>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Últimas Notificaciones <span class="badge badge-danger" id="pendingCount">@Model.Count()</span></h4>
+
+    <div class="list-group" id="notificationsList">
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-dark text-center text-muted" role="alert">
+                No hay notificaciones recientes
+            </div>
+        }
+        else
+        {
+            @foreach (var row in Model)
+            {
+                <a href="#" class="list-group-item list-group-item-action notif-item" id=@row.IdNotificacion>
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Notificación</h5>
+                    </div>
+                    <p class="mb-1">@row.Mensaje</p>
+                    <small class="text-muted">@row.FechaEnvio</small>
+                </a>
+            }
+        }
+
+    </div>
+</div>

@@ -1,0 +1,162 @@
+﻿@model IEnumerable<FrontEnd.Models.Clinica>
+
+@{
+    ViewData["Title"] = "Gestión de Clínicas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Administración</h1>
+        <h1 class="text-white display-3 mb-5">Administración de Clínicas</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Clínicas</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No hay clínicas registradas.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var clinica in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => clinica.Nombre)</td>
+                        <td>@Html.DisplayFor(modelItem => clinica.Direccion)</td>
+                        <td>@Html.DisplayFor(modelItem => clinica.Telefono)</td>
+                        <td>
+                            <button class="btn btn-link text-danger p-0 mx-1" data-toggle="modal" data-target="#deleteModal-@clinica.IdClinica" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+
+                            <button class="btn btn-link text-primary p-0 mx-1" data-toggle="modal" data-target="#editModal-@clinica.IdClinica" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-link text-info p-0 mx-1" data-toggle="modal" data-target="#detailsModal-@clinica.IdClinica" title="Ver Detalles">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="mt-4">
+        <a asp-action="Create" asp-controller="Clinica" class="btn btn-success"><i class="fas fa-plus"></i> Registrar Nueva Clínica</a>
+    </div>
+</div>
+@if (Model != null)
+{
+    foreach (var clinica in Model)
+    {
+        <div class="modal fade" id="deleteModal-@clinica.IdClinica" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@clinica.IdClinica" aria-hidden="true">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel-@clinica.IdClinica">Eliminar Clínica</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Nombre:</strong> @clinica.Nombre</p>
+                        <p><strong>Dirección:</strong> @clinica.Direccion</p>
+                        <p><strong>Teléfono:</strong> @clinica.Telefono</p>
+                        <hr />
+                        <h5 class="text-danger">¿Seguro que desea eliminar esta clínica?</h5>
+                        <p class="text-warning"><small>Nota: Eliminar una clínica puede afectar al personal y citas asociadas.</small></p>
+                        <form asp-action="Delete" asp-controller="Clinica" method="post">
+                            <input name="id" value="@clinica.IdClinica" type="hidden" />
+                            <button type="submit" class="btn btn-danger">Eliminar Clínica</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editModal-@clinica.IdClinica" tabindex="-1" role="dialog" aria-labelledby="editModalLabel-@clinica.IdClinica" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel-@clinica.IdClinica">Editar Clínica</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="Edit" asp-controller="Clinica" method="post">
+                            <input type="hidden" name="IdClinica" value="@clinica.IdClinica" />
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                <label asp-for="@clinica.Nombre" class="control-label">Nombre</label>
+                                <input asp-for="@clinica.Nombre" name="Nombre" class="form-control" value="@clinica.Nombre" required />
+                                <span asp-validation-for="@clinica.Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@clinica.Direccion" class="control-label">Dirección</label>
+                                <input asp-for="@clinica.Direccion" name="Direccion" class="form-control" value="@clinica.Direccion" required />
+                                <span asp-validation-for="@clinica.Direccion" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@clinica.Telefono" class="control-label">Teléfono</label>
+                                <input asp-for="@clinica.Telefono" name="Telefono" class="form-control" value="@clinica.Telefono" required />
+                                <span asp-validation-for="@clinica.Telefono" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mt-4 text-right">
+                                <button type="submit" class="btn btn-primary">Actualizar Clínica</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="detailsModal-@clinica.IdClinica" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@clinica.IdClinica" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailsModalLabel-@clinica.IdClinica">Detalles de la Clínica</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>ID:</strong> @clinica.IdClinica</p>
+                        <p><strong>Nombre:</strong> @clinica.Nombre</p>
+                        <p><strong>Dirección:</strong> @clinica.Direccion</p>
+                        <p><strong>Teléfono:</strong> @clinica.Telefono</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

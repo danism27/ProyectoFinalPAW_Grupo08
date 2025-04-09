@@ -1,0 +1,187 @@
+﻿@* *** CORREGIDO: Modelo es Pago *** *@
+@model FrontEnd.Models.Pago
+@{
+    ViewData["Title"] = "Registrar Pago de Cita";
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O el layout que corresponda
+    // var usuarioId = Context.Session.GetString("UsuarioId"); // No se usa directamente aquí
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 py-5 py-lg-0">
+                <h1 class="text-white mb-4">Registrar Pago de Cita</h1>
+                <p class="text-white-50 mb-4">Ingresa el ID de la Cita para buscarla y registrar su pago.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary py-5 px-4 px-sm-5">
+
+                    <div class="form-group">
+                        <input id="CitaIdBuscar" type="number" class="form-control border-0 p-4" placeholder="ID Cita" name="CitaIdBuscar" required="required" />
+                    </div>
+                    <div>
+                        <button id="buscarCita" class="btn btn-dark btn-block border-0 py-3" type="button">Buscar Cita</button>
+                    </div>
+                    <hr class="my-4" style="border-top: 1px solid rgba(255, 255, 255, 0.5);" />
+
+                    <form class="pt-2" asp-controller="Pago" asp-action="Create" method="post" id="pagoForm">
+                        @if (TempData["MensajePagoRegistrado"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @TempData["MensajePagoRegistrado"]
+                            </div>
+                        }
+                        @* Mostrar errores de validación del modelo Pago *@
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <h6 class="text-white font-weight-bold">Datos del Pago</h6>
+                        <div class="form-group">
+                            <input asp-for="IdCita" id="IdCita" type="hidden" />
+                            <span asp-validation-for="IdCita" class="text-danger field-validation-error"></span> @* Mensaje si no se selecciona cita *@
+                        </div>
+                        <div class="form-group">
+                            <label class="text-white">ID Cita Encontrada</label>
+                            <input id="DisplayIdCita" type="text" class="form-control border-0 p-4" placeholder="ID Cita" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Monto" class="text-white">Monto a Pagar</label>
+                            <input asp-for="Monto" id="Monto" type="number" step="0.01" class="form-control border-0 p-4" placeholder="Monto" required="required" />
+                            <span asp-validation-for="Monto" class="text-danger"></span>
+                        </div>
+
+                        <h6 class="text-white font-weight-bold mt-4">Método de Pago</h6>
+                        <div class="form-group" style="color: white;">
+                            <label class="d-block"><input type="radio" asp-for="MetodoPago" value="Sinpe" required> Sinpe</label>
+                            <label class="d-block"><input type="radio" asp-for="MetodoPago" value="Transaccion"> Transacción</label>
+                            <label class="d-block"><input type="radio" asp-for="MetodoPago" value="Tarjeta"> Tarjeta</label>
+                            <label class="d-block"><input type="radio" asp-for="MetodoPago" value="Efectivo"> Efectivo</label>
+                            <span asp-validation-for="MetodoPago" class="text-danger d-block"></span> @* Mensaje si no se selecciona método *@
+                        </div>
+
+                        <hr class="my-4" style="border-top: 1px solid rgba(255, 255, 255, 0.5);" />
+                        <h6 class="text-white font-weight-bold">Datos del Propietario</h6>
+                        <div class="form-group">
+                            <label class="text-white">Nombre</label>
+                            <input id="nombrePropietario" type="text" class="form-control border-0 p-4" placeholder="Nombre propietario" readonly />
+                        </div>
+                        @* Eliminar campo Cédula display, no está en el modelo Propietario *@
+
+                        <div class="mt-4">
+                            <button id="registrarPago" class="btn btn-dark btn-block border-0 py-3" type="submit" disabled>Registrar Pago</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+             // Función para limpiar campos y deshabilitar submit
+             function limpiarFormularioPago() {
+                 $("#IdCita").val("");
+                 $("#DisplayIdCita").val("");
+                 $("#Monto").val(""); // Limpiar monto también
+                 $("#nombrePropietario").val("");
+                 $("input[name='MetodoPago']").prop('checked', false); // Desmarcar radios
+                 $("#registrarPago").prop("disabled", true);
+                 // Limpiar mensajes de validación previos para IdCita
+                 $('span[data-valmsg-for="IdCita"]').text('');
+             }
+
+            // *** CORREGIDO: AJAX para buscar Cita ***
+            $("#buscarCita").click(function () {
+                var citaId = $("#CitaIdBuscar").val();
+                if (!citaId || isNaN(citaId)) {
+                    alert("Por favor ingrese un ID de Cita numérico válido.");
+                    limpiarFormularioPago();
+                    return;
+                }
+
+                 // *** CORREGIDO: URL apunta a CitaController (o donde esté tu acción AJAX) ***
+                 // Esta acción debe devolver detalles de Cita Y Propietario, y si ya tiene pagos
+                var url = "@Url.Action("BuscarCitaParaPagoJson", "Cita")"; // Ajusta nombre acción/controlador
+                var data = { id: parseInt(citaId) }; // Parámetro 'id'
+
+                $.post(url, data).done(function (resultado) {
+                     // Asumiendo que resultado tiene: { idCita: ..., montoAPagar: ..., yaPagada: true/false, idPropietarioNavigation: { nombre: ..., apellido: ... } }
+                    if (resultado && resultado.idCita && resultado.idCita != 0) {
+
+                        if(resultado.yaPagada) {
+                             alert("La Cita ID " + resultado.idCita + " ya tiene pagos registrados. No se puede registrar uno nuevo desde aquí.");
+                             limpiarFormularioPago();
+                              $("#DisplayIdCita").val(resultado.idCita); // Mostrar ID aunque esté pagada
+                              $("#nombrePropietario").val(resultado.idPropietarioNavigation?.nombre + ' ' + resultado.idPropietarioNavigation?.apellido || 'Propietario N/A');
+                             return;
+                        }
+
+                        alert("Cita encontrada: ID " + resultado.idCita);
+
+                        // Llenar los datos de la Cita/Propietario
+                        $("#IdCita").val(resultado.idCita);
+                        $("#DisplayIdCita").val(resultado.idCita);
+                        // Monto podría venir pre-calculado o lo ingresa el usuario
+                        $("#Monto").val(resultado.montoAPagar || ''); // Asume que el backend calcula/devuelve esto
+                        $("#nombrePropietario").val(resultado.idPropietarioNavigation?.nombre + ' ' + resultado.idPropietarioNavigation?.apellido || 'Propietario N/A');
+
+                         // Limpiar validación IdCita y habilitar botón
+                         $('span[data-valmsg-for="IdCita"]').text('');
+                        $("#registrarPago").prop("disabled", false);
+
+                    } else {
+                        alert("No se encuentra una Cita con el ID " + citaId + ".");
+                        limpiarFormularioPago();
+                    }
+                }).fail(function(error) {
+                    console.error("Error en la petición:", error);
+                    alert("Error al buscar la Cita. Por favor intente nuevamente.");
+                    limpiarFormularioPago();
+                });
+            });
+
+             // Limpiar si se cambia el ID después de buscar
+             $('#CitaIdBuscar').on('input', function() {
+                 if ($("#IdCita").val() !== '') { // Si ya se había encontrado una
+                     limpiarFormularioPago();
+                     $('span[data-valmsg-for="IdCita"]').text('Debe volver a buscar la cita.');
+                 }
+             });
+
+
+            // Validación simple en el cliente antes de enviar (la validación del modelo es la principal)
+            $("#pagoForm").submit(function(e) {
+                var idCita = $("#IdCita").val();
+                var monto = $("#Monto").val();
+                var metodoPago = $("input[name='MetodoPago']:checked").val();
+
+                if (!idCita) {
+                     $('span[data-valmsg-for="IdCita"]').text('Debe buscar y seleccionar una cita válida.');
+                     e.preventDefault();
+                     alert("Debe buscar y seleccionar una cita válida.");
+                     return false;
+                }
+                 if (!monto || parseFloat(monto) <= 0) {
+                      $('span[data-valmsg-for="Monto"]').text('El monto debe ser mayor a cero.');
+                      // No prevenimos el submit aquí para dejar que la validación del modelo actúe,
+                      // pero podrías hacerlo si prefieres validación JS más estricta.
+                      // e.preventDefault();
+                      // alert("El monto es requerido y debe ser mayor a cero.");
+                      // return false;
+                 }
+                 if (!metodoPago) {
+                      $('span[data-valmsg-for="MetodoPago"]').text('Debe seleccionar un método de pago.');
+                       // e.preventDefault();
+                       // alert("Debe seleccionar un método de pago.");
+                       // return false;
+                 }
+                return true; // Permite que la validación del modelo ASP.NET Core continúe
+            });
+        });
+    </script>
+}

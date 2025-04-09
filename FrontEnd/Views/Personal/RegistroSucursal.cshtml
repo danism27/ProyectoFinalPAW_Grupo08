@@ -1,0 +1,63 @@
+﻿@* *** CORREGIDO: Modelo es Clinica *** *@
+@model FrontEnd.Models.Clinica
+
+@{
+    // *** CORREGIDO: Título y Layout ***
+    ViewData["Title"] = "Registro de Clínica";
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O un layout de Admin si aplica
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 py-5 py-lg-0">
+                <h1 class="text-white mb-4">Registrar una Nueva Clínica</h1>
+                <p class="text-white-50 mb-4">Complete los datos para añadir una nueva clínica al sistema.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary py-5 px-4 px-sm-5">
+                    <form class="py-5" asp-controller="Clinica" asp-action="Create" method="post" id="registrationClinicaForm">
+                        @if (TempData["MensajeRegistroCorrecto"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @TempData["MensajeRegistroCorrecto"]
+                            </div>
+                        }
+                        @* Mostrar errores de validación del modelo Clinica *@
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <h6 class="text-white font-weight-bold">Datos de la Clínica</h6>
+                        <div class="form-group">
+                            @* *** CORREGIDO: Usar asp-for y label *** *@
+                            <label asp-for="Nombre" class="text-white"></label>
+                            <input asp-for="Nombre" class="form-control border-0 p-4" placeholder="Nombre de la clínica" required />
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Direccion" class="text-white"></label>
+                            <input asp-for="Direccion" class="form-control border-0 p-4" placeholder="Dirección de la clínica" required />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Telefono" class="text-white"></label>
+                            @* *** CORREGIDO: type="tel" para Telefono *** *@
+                            <input asp-for="Telefono" type="tel" class="form-control border-0 p-4" placeholder="Teléfono de la clínica" required />
+                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                        </div>
+                        @* Campo Horario eliminado *@
+                        <div class="mt-4">
+                            <button class="btn btn-dark btn-block border-0 py-3" type="submit">Registrar Clínica</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* *** CORREGIDO: Script irrelevante eliminado *** *@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

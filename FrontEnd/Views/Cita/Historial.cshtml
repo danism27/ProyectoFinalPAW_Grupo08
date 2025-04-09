@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FrontEnd.Models.HistorialCita>
+@{
+    // *** CORREGIDO: Título ***
+    ViewData["Title"] = "Historial de Cita";
+    // *** REVISAR: Asegúrate que el nombre del Layout sea correcto ***
+    Layout = "~/Views/Shared/_LayoutCitaHistorial.cshtml"; // O el layout que corresponda
+    int sequenceCounter = 0; // Contador para alternar timeline
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Historial de Cambios de la Cita</h1>
+        @if (Model.Any())
+        {
+            <h1 class="text-white display-3 mb-5">Cambios Cronológicos - Cita ID: @Model.First().IdCita</h1>
+        }
+        else
+        {
+            <h1 class="text-white display-3 mb-5">No hay historial para mostrar</h1>
+        }
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            @if (Model.Any())
+            {
+                <a asp-action="Details" asp-controller="Cita" asp-route-id="@Model.First().IdCita" class="btn btn-outline-light">Volver a Detalles Cita</a>
+            }
+            else
+            {
+                <a asp-action="Index" asp-controller="Cita" class="btn btn-outline-light">Volver al Listado</a>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="timelinePaquetes">
+    @if (!Model.Any())
+    {
+        <div class="text-center text-muted mt-5">
+            <h4>No hay registros de historial para esta cita.</h4>
+        </div>
+    }
+    else
+    {
+        @foreach (var row in Model.OrderBy(h => h.FechaCambio)) // Ordenar por fecha
+        {
+            sequenceCounter++; // Incrementar contador
+
+            // *** CORREGIDO: Usar contador para alternar ***
+            var timelineClass = (sequenceCounter % 2 != 0) ? "leftcontenttimeline" : "rightcontenttimeline";
+            var containerClass = $"containertimelinepaquete {timelineClass}"; // Mantener clase CSS o renombrar
+
+            <div class="@containerClass">
+                <div class="contenttimeline">
+                    @{
+                        // *** CORREGIDO: Construir información basada en el modelo HistorialCita ***
+                        string estadoAnterior = row.EstadoAnterior ?? "Inicio";
+                        string estadoNuevo = row.EstadoNuevo ?? "N/A";
+                        string tituloEvento = $"Estado: {estadoAnterior} -> {estadoNuevo}"; // Título principal [cite: 24, 25]
+                        string fechaCambio = row.FechaCambio?.ToString("g") ?? "Fecha desconocida"; // [cite: 24]
+                        string modificador = row.IdPersonalModificacionNavigation != null
+                        ? $"Modificado por: {row.IdPersonalModificacionNavigation.Nombre} {row.IdPersonalModificacionNavigation.Apellido}"
+                        : "Modificado por: Sistema/Desconocido"; // [cite: 27]
+                        string ubicacion = !string.IsNullOrWhiteSpace(row.UbicacionActual)
+                        ? $"Ubicación registrada: {row.UbicacionActual}"
+                        : ""; // [cite: 25]
+                    }
+
+                    <h2>@tituloEvento</h2>
+                    <h4>@fechaCambio</h4>
+                    <p>@modificador</p>
+                    @if (!string.IsNullOrWhiteSpace(ubicacion))
+                    {
+                        <p><small>@ubicacion</small></p>
+                    }
+                </div>
+            </div>
+        }
+    }
+
+</div>

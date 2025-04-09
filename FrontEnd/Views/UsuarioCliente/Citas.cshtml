@@ -1,0 +1,178 @@
+﻿@model IEnumerable<FrontEnd.Models.Cita>
+@{
+    ViewData["Title"] = "Gestión de Citas";
+    Layout = "~/Views/Shared/_LayoutPropietarios.cshtml";
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h4 class="text-white display-3 mb-4">Clínica Veterinaria</h4>
+        <h4 class="text-primary display-3 mb-5">Mis Citas</h4>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <form asp-controller="Propietario" asp-action="Citas" method="get" class="w-100 d-flex">
+                    <input type="text" name="buscar" class="form-control border-light" style="padding: 30px;" placeholder="Buscar por ID Cita o Motivo">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Estado de Citas (Cerradas)</h4>
+                    @* Contando citas por EstadoCita (asumiendo estados 'Completada' y 'Cancelada') *@
+                    <h1 class="text-primary mb-2" data-toggle="counter-up">@Model.Count(c => c.EstadoCita == "Completada" || c.EstadoCita == "Cancelada")</h1>
+                    <a href="@Url.Action("EstadoCitas", "Propietario")" class="btn btn-outline-dark btn-sm mt-2">Ver Todas las Citas</a>
+                    <ul class="list-inline row mt-4">
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => c.EstadoCita == "Completada")</h5>
+                            <p class="mb-0 text-muted">Completadas</p>
+                        </li>
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => c.EstadoCita == "Cancelada")</h5>
+                            <p class="mb-0 text-muted">Canceladas</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Citas Activas</h4>
+                    @* Contando citas por EstadoCita (asumiendo estados 'Pendiente' y 'Confirmada') *@
+                    <h1 class="text-primary mb-2" data-toggle="counter-up">@Model.Count(c => c.EstadoCita == "Pendiente" || c.EstadoCita == "Confirmada")</h1>
+                    <a href="@Url.Action("CitasActivas", "Propietario")" class="btn btn-outline-dark btn-sm mt-2">Ver Citas Activas</a>
+                    <ul class="list-inline row mt-4">
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => c.EstadoCita == "Confirmada")</h5>
+                            <p class="mb-0 text-muted">Confirmadas</p>
+                        </li>
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => c.EstadoCita == "Pendiente")</h5>
+                            <p class="mb-0 text-muted">Pendientes</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Citas</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Cita</th>
+                <th>Clínica Destino</th>
+                @*<th>Estado de pago</th>*@  @* Columna eliminada *@
+                <th>Fecha y Hora</th>
+                <th>Veterinario</th>
+                @*<th>Monto</th>*@           @* Columna eliminada *@
+                <th>Estado Cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    @* Colspan ajustado a 6 columnas visibles *@
+                    <td colspan="6" class="text-center text-muted">No hay citas registradas</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var cita in Model)
+                {
+                    <tr>
+                        <td>@cita.IdCita</td>
+                        <td>@(cita.IdClinicaDestinoNavigation?.Nombre ?? "N/A")</td>
+                        @*<td>Estado Pago</td>*@ @* Celda eliminada *@
+                        <td>@(cita.FechaHoraCita?.ToString("dd/MM/yyyy HH:mm") ?? "Fecha no disponible")</td>
+                        <td>@(cita.IdVeterinarioAsignadoNavigation?.Nombre ?? "No asignado")</td>
+                        @*<td>Monto</td>*@ @* Celda eliminada *@
+                        <td>
+                            @* Verifica que 'cita' no sea null y que EstadoCita se acceda correctamente. *@
+                            @* Si sigue dando error, revisa el tipo exacto del modelo pasado por el controlador. *@
+                            @if (cita.EstadoCita == "Pendiente")
+                            {
+                                <strong style="color: #757575;">@cita.EstadoCita</strong>
+                            }
+                            else if (cita.EstadoCita == "Confirmada")
+                            {
+                                <strong style="color: #007bff;">@cita.EstadoCita</strong>
+                            }
+                            else if (cita.EstadoCita == "Completada")
+                            {
+                                <strong style="color: #28a745;">@cita.EstadoCita</strong>
+                            }
+                            else if (cita.EstadoCita == "Cancelada")
+                            {
+                                <strong style="color: #dc3545;">@cita.EstadoCita</strong>
+                            }
+                            else
+                            {
+                                <strong style="color: #6c757d;">@(cita.EstadoCita ?? "N/D")</strong> @* Añadido null check para mostrar N/D si es null *@
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-link text-info" data-toggle="modal" data-target="#detalleModal-@cita.IdCita">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <div class="modal fade" id="detalleModal-@cita.IdCita" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel-@cita.IdCita" aria-hidden="true">
+                                    <div class="modal-dialog modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="detalleModalLabel-@cita.IdCita">Detalles de la Cita</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>ID Cita:</strong> @cita.IdCita</p>
+                                                <p><strong>Propietario:</strong> @(cita.IdPropietarioNavigation?.Nombre ?? "") @(cita.IdPropietarioNavigation?.Apellido ?? "")</p>
+                                                <p><strong>Clínica Origen:</strong> @(cita.IdClinicaOrigenNavigation?.Nombre ?? "N/A")</p>
+                                                <p><strong>Clínica Destino:</strong> @(cita.IdClinicaDestinoNavigation?.Nombre ?? "N/A")</p>
+                                                <p><strong>Motivo Consulta:</strong> @cita.MotivoConsulta</p>
+                                                <p><strong>Peso Mascota (kg):</strong> @cita.PesoMascota</p>
+                                                <p><strong>Detalles Mascota:</strong> @cita.DetallesMascota</p>
+                                                @*<p><strong>Estado de pago:</strong> ... </p>*@ @* Eliminado - Requiere lógica de Pagos *@
+                                                @*<p><strong>Monto:</strong> ... </p>*@ @* Eliminado - Requiere lógica de Pagos *@
+                                                <p><strong>Fecha/Hora Cita:</strong> @cita.FechaHoraCita?.ToString("dd/MM/yyyy HH:mm")</p>
+                                                <p><strong>Veterinario Asignado:</strong> @(cita.IdVeterinarioAsignadoNavigation?.Nombre ?? "No asignado")</p>
+                                                <p><strong>Estado Cita:</strong> @(cita.EstadoCita ?? "N/D")</p> @* Añadido null check aquí también *@
+                                                <p><strong>Fecha Creación:</strong> @cita.FechaCreacion?.ToString("dd/MM/yyyy HH:mm")</p>
+
+                                                <hr />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form asp-action="Historial" asp-controller="Propietario" method="get" style="display: inline;">
+                                    <input type="hidden" name="citaId" value="@cita.IdCita" />
+                                    <button type="submit" class="btn btn-link text-secondary" title="Ver Historial">
+                                        <i class="fas fa-history"></i>
+                                    </button>
+                                </form>
+
+                                @* ... (Modal comentado como en la versión anterior) ... *@
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

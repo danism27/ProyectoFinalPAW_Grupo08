@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = "Consulta de Cita"; // Título actualizado
+    Layout = "~/Views/Shared/_LayoutPropietarios.cshtml"; // Layout actualizado (Verificar si es el correcto para esta página)
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h4 class="text-white display-3 mb-4">Clínica Veterinaria</h4> @* Texto actualizado *@
+        <h4 class="text-primary display-3 mb-5">Consulta de Cita</h4> @* Texto actualizado *@
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                @* Input para ID de Cita. Se necesita JS para leer este valor. *@
+                <input type="text" id="citaIdInput" class="form-control border-light" style="padding: 30px;" placeholder="Ingrese ID de Cita">
+                <div class="input-group-append">
+                    @* Este botón DEBERÍA activar JS para buscar y mostrar datos, no solo abrir un modal estático. *@
+                    <button id="consultarBtn" class="btn btn-primary px-3">Consultar</button>
+                    @* Botón original que solo abre modal estático:
+                     <button class="btn btn-primary px-3" data-toggle="modal" data-target="#detailsModal">Consultar</button>
+                     *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Esta sección debería poblarse dinámicamente después de una consulta exitosa *@
+<div class="container-fluid py-4" id="resultsPanel" style="display: none;">
+    @* Oculto por defecto *@
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Notificaciones</h4> @* Título actualizado *@
+                    @* El recuento debe cargarse dinámicamente *@
+                    <h1 class="text-primary mb-2" data-toggle="counter-up"></h1>
+                    @* Controlador actualizado a Propietario. Verificar si las notificaciones aplican a Propietario. *@
+                    <a href="@Url.Action("Notificaciones","Propietario")" class="btn btn-outline-dark btn-sm mt-2">Ver Notificaciones</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Veterinario Asignado</h4> @* Título actualizado *@
+                    @* Los detalles del veterinario deben cargarse dinámicamente *@
+                    <p><strong>Nombre:</strong> <span id="vetNombre"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="vetTelefono"></span></p>
+                    <a id="vetLlamarLink" href="#" class="btn btn-outline-dark btn-sm mt-2">Llamar al Veterinario</a> @* href debe ser dinámico *@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Esta tabla debería poblarse dinámicamente con el historial de la cita consultada *@
+<div class="container-fluid py-4" id="historyPanel" style="display: none;">
+    @* Oculto por defecto *@
+    <h4 class="mb-4 text-primary">Historial de la Cita</h4> @* Título actualizado *@
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                @* Cabeceras actualizadas para HistorialCita *@
+                <th>Fecha Cambio</th>
+                <th>Estado Anterior</th>
+                <th>Estado Nuevo</th>
+                <th>Modificado Por</th>
+                <th>Ubicación (si aplica)</th> @* Opcional basado en HistorialCita.UbicacionActual *@
+                @* <th>Acciones</th> *@ @* Probablemente no necesite acciones por línea aquí *@
+            </tr>
+        </thead>
+        <tbody id="historialTableBody">
+            @* Las filas (<tr>) del historial se deben generar y añadir aquí dinámicamente con JavaScript *@
+            @* Ejemplo de cómo podría lucir una fila generada:
+            <tr>
+                <td>[Fecha Cambio]</td>
+                <td>[Estado Anterior]</td>
+                <td>[Estado Nuevo]</td>
+                <td>[Nombre Personal Modificacion]</td>
+                <td>[Ubicacion Actual]</td>
+            </tr>
+            *@
+            <tr><td colspan="5" class="text-center">Consultando historial...</td></tr> @* Placeholder *@
+        </tbody>
+    </table>
+</div>
+@* Este modal debe ser poblado dinámicamente con los detalles de la cita consultada *@
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Detalles de la Cita</h5> @* Título actualizado *@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="detailsModalBody">
+                @* El contenido se debe generar y añadir aquí dinámicamente con JavaScript *@
+                <p><strong>ID Cita:</strong> <span id="modalIdCita"></span></p>
+                <p><strong>Propietario:</strong> <span id="modalPropietario"></span></p>
+                <p><strong>Clínica Destino:</strong> <span id="modalClinica"></span></p>
+                <p><strong>Fecha y Hora:</strong> <span id="modalFechaHora"></span></p>
+                <p><strong>Motivo Consulta:</strong> <span id="modalMotivo"></span></p>
+                <p><strong>Estado Cita:</strong> <span id="modalEstadoCita"></span></p>
+                <p><strong>Veterinario Asignado:</strong> <span id="modalVeterinario"></span></p>
+                @* Añadir más campos si es necesario (Peso, Detalles Mascota, etc.) *@
+                <hr />
+                <p><i>Cargando detalles...</i></p> @* Placeholder *@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        // --- Inicio: Lógica JavaScript ESENCIAL para hacer funcionar esta página ---
+        $(document).ready(function () {
+            $('#consultarBtn').on('click', function () {
+                var citaId = $('#citaIdInput').val();
+                if (!citaId) {
+                    alert('Por favor, ingrese un ID de Cita.');
+                    return;
+                }
+
+                // Mostrar placeholders de carga
+                $('#resultsPanel').hide();
+                $('#historyPanel').hide();
+                 $('#historialTableBody').html('<tr><td colspan="5" class="text-center">Consultando historial...</td></tr>');
+                $('#detailsModalBody').html('<p><i>Cargando detalles...</i></p>'); // Limpiar/resetear modal
+
+                // --- Llamada AJAX al backend ---
+                // Necesitas crear un endpoint en tu backend, por ejemplo: /Propietario/ConsultaCitaJson?idCita=xxx
+                // Este endpoint debe devolver un JSON con los datos de Cita, Propietario, Clinica, Veterinario, HistorialCitas, etc.
+                $.ajax({
+                    url: '@Url.Action("ConsultaCitaJson", "Propietario")', // ¡Asegúrate que esta acción y controlador existan!
+                    type: 'GET',
+                    data: { idCita: citaId },
+                    success: function (data) {
+                        // --- Poblar Paneles (Ejemplo) ---
+                         if(data.veterinarioAsignado) {
+                            $('#vetNombre').text(data.veterinarioAsignado.nombreCompleto || 'No asignado');
+                            $('#vetTelefono').text(data.veterinarioAsignado.telefono || 'N/A');
+                            if(data.veterinarioAsignado.telefono) {
+                                $('#vetLlamarLink').attr('href', 'tel:' + data.veterinarioAsignado.telefono);
+                            } else {
+                                 $('#vetLlamarLink').attr('href', '#').addClass('disabled');
+                            }
+                         } else {
+                             // Limpiar datos del veterinario si no hay
+                            $('#vetNombre').text('No asignado');
+                            $('#vetTelefono').text('N/A');
+                             $('#vetLlamarLink').attr('href', '#').addClass('disabled');
+                         }
+                         // Poblar panel de notificaciones (si aplica y se devuelve en 'data')
+                        $('#resultsPanel').show(); // Mostrar panel de resultados
+
+                        // --- Poblar Tabla de Historial (Ejemplo) ---
+                        $('#historialTableBody').empty(); // Limpiar tabla
+                        if (data.historial && data.historial.length > 0) {
+                            $.each(data.historial, function (index, item) {
+                                var row = '<tr>' +
+                                    '<td>' + (item.fechaCambio ? new Date(item.fechaCambio).toLocaleString() : 'N/A') + '</td>' +
+                                    '<td>' + (item.estadoAnterior || '-') + '</td>' +
+                                    '<td>' + (item.estadoNuevo || '-') + '</td>' +
+                                    '<td>' + (item.modificadoPor || 'Sistema') + '</td>' +
+                                     '<td>' + (item.ubicacionActual || '-') + '</td>' +
+                                    '</tr>';
+                                $('#historialTableBody').append(row);
+                            });
+                        } else {
+                            $('#historialTableBody').html('<tr><td colspan="5" class="text-center">No hay historial disponible para esta cita.</td></tr>');
+                        }
+                        $('#historyPanel').show(); // Mostrar panel de historial
+
+                         // --- Poblar Modal (Ejemplo) ---
+                         // Limpiar placeholder del modal antes de añadir datos
+                         $('#detailsModalBody').empty();
+                         $('#detailsModalBody').append('<p><strong>ID Cita:</strong> ' + (data.idCita || 'N/A') + '</p>');
+                         $('#detailsModalBody').append('<p><strong>Propietario:</strong> ' + (data.propietario?.nombreCompleto || 'N/A') + '</p>');
+                         $('#detailsModalBody').append('<p><strong>Clínica Destino:</strong> ' + (data.clinicaDestino?.nombre || 'N/A') + '</p>');
+                         $('#detailsModalBody').append('<p><strong>Fecha y Hora:</strong> ' + (data.fechaHoraCita ? new Date(data.fechaHoraCita).toLocaleString() : 'N/A') + '</p>');
+                         $('#detailsModalBody').append('<p><strong>Motivo Consulta:</strong> ' + (data.motivoConsulta || '-') + '</p>');
+                         $('#detailsModalBody').append('<p><strong>Estado Cita:</strong> ' + (data.estadoCita || 'N/D') + '</p>');
+                         $('#detailsModalBody').append('<p><strong>Veterinario Asignado:</strong> ' + (data.veterinarioAsignado?.nombreCompleto || 'No asignado') + '</p>');
+                         // Añadir más campos si los devuelves en 'data'
+
+                         // Mostrar el modal
+                         $('#detailsModal').modal('show');
+
+                    },
+                    error: function (xhr, status, error) {
+                        // Manejar errores (ej. Cita no encontrada, error del servidor)
+                        alert('Error al consultar la cita: ' + (xhr.responseJSON?.message || error));
+                        $('#historialTableBody').html('<tr><td colspan="5" class="text-center">No se pudo cargar el historial.</td></tr>');
+                         $('#detailsModalBody').html('<p><i>Error al cargar detalles.</i></p>');
+                    }
+                });
+                // --- Fin Llamada AJAX ---
+            });
+        });
+        // --- Fin: Lógica JavaScript ---
+    </script>
+}

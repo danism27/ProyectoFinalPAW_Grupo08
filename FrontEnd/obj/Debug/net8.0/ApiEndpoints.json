@@ -1,0 +1,140 @@
+[
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreo",
+    "RelativePath": "api/Correo/EnviarCorreo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailReceiver",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "subject",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "body",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoActualizarEstadoCita",
+    "RelativePath": "api/Correo/EnviarCorreoActualizarEstadoCita",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "citaActualizada",
+        "Type": "FrontEnd.Models.Cita",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoCambioContrasenaPropietario",
+    "RelativePath": "api/Correo/EnviarCorreoCambioContrasenaPropietario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propietario",
+        "Type": "FrontEnd.Models.Propietario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoCodigoSeguridadPropietario",
+    "RelativePath": "api/Correo/EnviarCorreoCodigoSeguridadPropietario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propietario",
+        "Type": "FrontEnd.Models.Propietario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoContrasenaTemporalPropietario",
+    "RelativePath": "api/Correo/EnviarCorreoContrasenaTemporalPropietario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propietario",
+        "Type": "FrontEnd.Models.Propietario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoInicioSesionPropietario",
+    "RelativePath": "api/Correo/EnviarCorreoInicioSesionPropietario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "propietario",
+        "Type": "FrontEnd.Models.Propietario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoPagoCita",
+    "RelativePath": "api/Correo/EnviarCorreoPagoCita",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pago",
+        "Type": "FrontEnd.Models.Pago",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FrontEnd.Controllers.CorreoController",
+    "Method": "EnviarCorreoRegistroCita",
+    "RelativePath": "api/Correo/EnviarCorreoRegistroCita",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cita",
+        "Type": "FrontEnd.Models.Cita",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

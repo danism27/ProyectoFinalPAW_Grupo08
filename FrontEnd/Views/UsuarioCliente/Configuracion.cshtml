@@ -1,0 +1,214 @@
+﻿@model FrontEnd.Models.Propietario
+@{
+    ViewData["Title"] = "Configuración";
+    Layout = "~/Views/Shared/_LayoutClientes.cshtml"; // Asumiendo que este Layout sigue siendo relevante para Propietario
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-4 font-weight-bold mb-4 ">Configura tu</h1>
+        <h1 class="text-white display-4 font-weight-bold mb-4 "> Perfil</h1>
+    </div>
+</div>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="text-center bg-primary py-4 rounded-top">
+                @* La propiedad FotoPerfil no existe en el modelo Propietario, necesitarías añadirla o usar un ViewModel *@
+                @* <img src="@Model.FotoPerfil" class="rounded-circle border border-light mb-3" alt="Imagen de Perfil" style="width: 120px; height: 120px;"> *@
+                <img src="/imagenesperfil/profile.jpg" class="rounded-circle border border-light mb-3" alt="Imagen de Perfil Placeholder" style="width: 120px; height: 120px;"> @* Placeholder *@
+                <h4 class="text-white mb-1">@Model.Nombre @Model.Apellido</h4> @* Usando Model.Apellido [cite: 50] *@
+                <a href="#" data-toggle="modal" data-target="#changeProfilePicModal" class="text-white small">
+                    <span class="fas fa-camera"></span> Cambiar Foto de Perfil
+                </a>
+            </div>
+            <div class="modal fade" id="changeProfilePicModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Cambiar Foto de Perfil</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @* Ajustar la acción si el controlador/acción cambió de nombre (asumiendo que /UsuarioCliente/ sigue siendo correcto) *@
+                            <form method="post" action="/UsuarioCliente/Configuracion" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label>Subir nueva foto</label>
+                                    <input type="file" class="form-control" name="ProfileImage" accept=".jpg,.png" required>
+                                    <small class="form-text text-muted">El archivo debe ser .jpg o .png.</small>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light py-4 px-3 rounded-bottom shadow">
+                <h5 class="text-dark">Información Personal</h5>
+                @* La propiedad Cedula no existe en el modelo Propietario, sí en RegistroModeloCliente [cite: 106] *@
+                @* <p><strong style="color:#1F1F2E">Cédula:</strong> @Model.Cedula</p> *@
+                <p><strong style="color:#1F1F2E">Correo Electrónico:</strong> @Model.Correo</p> @* Existe en Propietario*@
+                <p><strong style="color:#1F1F2E">Teléfono:</strong> @Model.Telefono</p> @* Usando Model.Telefono*@
+                @* Las propiedades de dirección detallada no existen en Propietario, sí en RegistroModeloCliente*@
+                @* <p><strong style="color:#1F1F2E">Dirección:</strong> @Model.Direccion, @Model.Provincia, @Model.Canton, @Model.Distrito, @Model.CodigoPostal</p> *@
+                <p><strong style="color:#1F1F2E">Dirección:</strong> (No disponible en modelo Propietario)</p> @* Placeholder *@
+
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="#" data-toggle="collapse" data-target="#editInfoForm" class="btn btn-outline-dark">
+                        <span class="fas fa-edit"></span> Editar Información
+                    </a>
+                    <a href="#" data-toggle="collapse" data-target="#changePasswordForm" class="btn btn-outline-dark">
+                        <span class="fas fa-lock"></span> Cambiar Contraseña
+                    </a>
+                </div>
+
+                <div id="editInfoForm" class="collapse mt-4">
+                    @* Ajustar la acción si el controlador/acción cambió de nombre (asumiendo que /UsuarioCliente/ sigue siendo correcto) *@
+                    <form method="post" action="/UsuarioCliente/EditarInformacion">
+                        <input type="hidden" name="IdPropietario" value="@Model.IdPropietario" />
+
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="Nombre" value="@Model.Nombre" required> @* Existe en Propietario [cite: 49] *@
+                        </div>
+                        <div class="form-group">
+                            <label>Apellido</label>
+                            <input type="text" class="form-control" name="Apellido" value="@Model.Apellido" required> @* Usando Apellido [cite: 50] *@
+                        </div>
+                        @* El campo SegundoApellido no existe en Propietario*@
+                        @* <div class="form-group">
+                            <label>Segundo Apellido</label>
+                            <input type="text" class="form-control" name="SegundoApellido" value="@Model.SegundoApellido" required>
+                        </div> *@
+                        @* El campo Cedula no existe en Propietario*@
+                        @* <div class="form-group">
+                            <label>Cédula</label>
+                            <input type="text" class="form-control" name="Cedula" value="@Model.Cedula"
+                                   pattern="\d{10}" title="La cédula debe tener 10 dígitos." required>
+                        </div> *@
+                        <div class="form-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" class="form-control" name="Correo" value="@Model.Correo" required> @* Existe en Propietario*@
+                        </div>
+                        <div class="form-group">
+                            <label>Número de Teléfono</label>
+                            <input type="text" class="form-control" name="Telefono" value="@Model.Telefono"
+                                   pattern="\d{8}" title="El número de teléfono debe tener 8 dígitos."> @* Usando Telefonoy removido required porque es nullable *@
+                        </div>
+                        @* El campo TelefonoSecundario no existe en Propietario*@
+                        @* <div class="form-group">
+                            <label>Número de Teléfono Secundario</label>
+                            <input type="text" class="form-control" name="TelefonoSecundario" value="@Model.TelefonoSecundario"
+                                   pattern="\d{8}" title="El número de teléfono debe tener 8 dígitos." required>
+                        </div> *@
+                        @* Los campos de dirección no existen en Propietario*@
+                        @* <div class="form-group">
+                            <label>Provincia</label>
+                            <input type="text" class="form-control" name="Provincia" value="@Model.Provincia" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cantón</label>
+                            <input type="text" class="form-control" name="Canton" value="@Model.Canton" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Distrito</label>
+                            <input type="text" class="form-control" name="Distrito" value="@Model.Distrito" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Código Postal</label>
+                            <input type="number" class="form-control" name="CodigoPostal" value="@Model.CodigoPostal">
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <textarea class="form-control" name="Direccion" required>@Model.Direccion</textarea>
+                        </div> *@
+                        <button type="submit" class="btn btn-dark btn-block">Guardar Cambios</button>
+                    </form>
+                </div>
+                <div id="changePasswordForm" class="collapse mt-4">
+                    @* Ajustar la acción si el controlador/acción cambió de nombre (asumiendo que /UsuarioCliente/ sigue siendo correcto) *@
+                    <form method="post" action="/UsuarioCliente/CambiarContrasena">
+                        @if (TempData["ErrorContrasena"] != null)
+                        {
+                            <div class="alert alert-danger">@TempData["ErrorContrasena"]</div>
+                        }
+
+                        @if (TempData["ExitoContrasena"] != null)
+                        {
+                            <div class="alert alert-success">@TempData["ExitoContrasena"]</div>
+                        }
+
+                        <input type="hidden" name="IdPropietario" value="@Model.IdPropietario" />
+
+                        <div class="form-group">
+                            <label>Contraseña Actual</label>
+                            <input type="password" class="form-control" name="ContrasenaActual" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nueva Contraseña</label>
+                            @* El nombre del campo debe coincidir con el parámetro esperado en el controlador, asumiendo "NuevaContrasena" *@
+                            <input type="password" class="form-control" id="nuevaPassword" name="NuevaContrasena" required>
+                            <div class="bg-light p-3 mt-2" id="passwordHelp" style="display: none; border-radius: 5px;">
+                                <p class="mb-1">La contraseña debe cumplir con:</p>
+                                <ul class="mb-0">
+                                    <li id="length" class="text-danger">Mínimo 8 caracteres</li>
+                                    <li id="uppercase" class="text-danger">Una letra mayúscula</li>
+                                    <li id="lowercase" class="text-danger">Una letra minúscula</li>
+                                    <li id="number" class="text-danger">Un número</li>
+                                    <li id="special" class="text-danger">Un carácter especial (#$%^&+=!)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmar Nueva Contraseña</label>
+                            @* El nombre del campo debe coincidir con el parámetro esperado en el controlador, asumiendo "ConfirmarContrasena" *@
+                            <input type="password" class="form-control" id="confirmNuevaPassword" name="ConfirmarContrasena" required>
+                            <div id="passwordMismatch" class="text-danger" style="display: none;">Las contraseñas no coinciden.</div>
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-block">Actualizar Contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* El script de validación no requiere cambios basados en el modelo *@
+<script>
+    // Validación de la nueva contraseña
+    document.getElementById("nuevaPassword").addEventListener("input", function () {
+        const password = this.value;
+        const length = document.getElementById("length");
+        const uppercase = document.getElementById("uppercase");
+        const lowercase = document.getElementById("lowercase");
+        const number = document.getElementById("number");
+        const special = document.getElementById("special");
+        const passwordHelp = document.getElementById("passwordHelp");
+
+        passwordHelp.style.display = "block";
+
+        // Validaciones
+        length.classList.toggle("text-success", password.length >= 8);
+        length.classList.toggle("text-danger", password.length < 8);
+        uppercase.classList.toggle("text-success", /[A-Z]/.test(password));
+        uppercase.classList.toggle("text-danger", !/[A-Z]/.test(password));
+        lowercase.classList.toggle("text-success", /[a-z]/.test(password));
+        lowercase.classList.toggle("text-danger", !/[a-z]/.test(password));
+        number.classList.toggle("text-success", /\d/.test(password));
+        number.classList.toggle("text-danger", !/\d/.test(password));
+        special.classList.toggle("text-success", /[#$%^&+=!]/.test(password));
+        special.classList.toggle("text-danger", !/[#$%^&+=!]/.test(password));
+    });
+
+    // Validación de coincidencia de contraseñas
+    document.getElementById("confirmNuevaPassword").addEventListener("input", function () {
+        const password = document.getElementById("nuevaPassword").value;
+        const confirmPassword = this.value;
+        const passwordMismatch = document.getElementById("passwordMismatch");
+        passwordMismatch.style.display = (password !== confirmPassword) ? "block" : "none";
+    });
+</script>

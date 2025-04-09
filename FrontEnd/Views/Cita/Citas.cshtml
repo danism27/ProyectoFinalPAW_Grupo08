@@ -1,0 +1,177 @@
+﻿@model IEnumerable<FrontEnd.Models.Cita>
+@{
+    // *** CORREGIDO: Título y Layout ***
+    ViewData["Title"] = "Gestión de Citas";
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O un layout de Admin si aplica
+
+    // Define los estados relevantes para los paneles (ajusta según tus valores)
+    var estadosFinalizados = new[] { "Completada" }; // O incluye "Cancelada" si cuenta como finalizada
+    var estadosEnClinica = new[] { "En Clinica" };   // Estado específico en la clínica
+    var estadosEnProceso = new[] { "Pendiente", "Programada", "En Clinica" }; // Todos los no finalizados/cancelados
+    var estadosRuta = new[] { "Programada", "En Clinica" }; // Estados activos que no son solo pendientes
+    var estadosPendientes = new[] { "Pendiente" };
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mb-5">Gestión de Citas</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <form asp-controller="Cita" asp-action="Index" method="get" class="w-100 d-flex">
+                    <input type="text" name="buscar" class="form-control border-light" style="padding: 30px;" placeholder="Buscar por ID Cita, Propietario, Motivo...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Citas Finalizadas / En Clínica</h4>
+                    <h1 class="text-primary mb-2" data-toggle="counter-up">@Model.Count(c => estadosFinalizados.Contains(c.EstadoCita) || estadosEnClinica.Contains(c.EstadoCita))</h1>
+                    <a href="@Url.Action("EstadoCitas","Cita")" class="btn btn-outline-dark btn-sm mt-2">Ver Detalles</a>
+                    <ul class="list-inline row mt-4">
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => estadosFinalizados.Contains(c.EstadoCita))</h5>
+                            <p class="mb-0 text-muted">Finalizadas</p>
+                        </li>
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => estadosEnClinica.Contains(c.EstadoCita))</h5>
+                            <p class="mb-0 text-muted">En Clínica</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Citas en Proceso</h4>
+                    <h1 class="text-primary mb-2" data-toggle="counter-up">@Model.Count(c => estadosEnProceso.Contains(c.EstadoCita))</h1>
+                    <a href="@Url.Action("CitasEnProceso","Cita")" class="btn btn-outline-dark btn-sm mt-2">Ver Detalles</a>
+                    <ul class="list-inline row mt-4">
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => estadosRuta.Contains(c.EstadoCita))</h5>
+                            <p class="mb-0 text-muted">Programada/En Clínica</p>
+                        </li>
+                        <li class="col-6">
+                            <h5 class="text-dark">@Model.Count(c => estadosPendientes.Contains(c.EstadoCita))</h5>
+                            <p class="mb-0 text-muted">Pendientes</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista Completa de Citas</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Cita</th>
+                <th>Clínica Origen</th>
+                <th>Propietario</th>
+                <th>Fecha/Hora Cita</th>
+                <th>Motivo Consulta</th>
+                <th>Estado Cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No hay citas registradas</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var cita in Model)
+                {
+                    <tr>
+                        <td>@cita.IdCita</td>
+                        <td>@(cita.IdClinicaOrigenNavigation?.Nombre ?? "N/A")</td>
+                        <td>@(cita.IdPropietarioNavigation != null ? $"{cita.IdPropietarioNavigation.Nombre} {cita.IdPropietarioNavigation.Apellido}" : "N/A")</td>
+                        <td>@(cita.FechaHoraCita?.ToString("g") ?? "Fecha no disponible")</td>
+                        <td>@(cita.MotivoConsulta ?? "N/A")</td>
+                        <td>
+                            <strong style="color:
+                        @(cita.EstadoCita == "Pendiente" ? "#757575" :
+                          cita.EstadoCita == "Programada" ? "#007bff" :
+                          cita.EstadoCita == "En Clinica" ? "#ffc107" :
+                          cita.EstadoCita == "Completada" ? "#28a745" :
+                          cita.EstadoCita == "Cancelada" ? "#dc3545" : "#000")">
+                                @(cita.EstadoCita ?? "N/A")
+                            </strong>
+                        </td>
+                        <td>
+                            <button class="btn btn-link text-danger" data-toggle="modal" data-target="#deleteModal-@cita.IdCita" title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+
+                            <div class="modal fade" id="deleteModal-@cita.IdCita" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-@cita.IdCita" aria-hidden="true">
+                                <div class="modal-dialog modal-md" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel-@cita.IdCita">Eliminar Cita</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>ID Cita:</strong> @cita.IdCita</p>
+                                            <p><strong>Propietario:</strong> @(cita.IdPropietarioNavigation != null ? $"{cita.IdPropietarioNavigation.Nombre} {cita.IdPropietarioNavigation.Apellido}" : "N/A")</p>
+                                            <p><strong>Fecha/Hora:</strong> @(cita.FechaHoraCita?.ToString("g") ?? "N/A")</p>
+                                            <p><strong>Estado Actual:</strong> @(cita.EstadoCita ?? "N/A")</p>
+                                            <hr />
+                                            @if (cita.EstadoCita == "Pendiente" || cita.EstadoCita == "Programada")
+                                            {
+                                                <h5 class="mt-3">¿Seguro que desea borrar esta cita?</h5>
+                                                <form asp-action="Delete" asp-controller="Cita" method="post">
+                                                    <input name="id" value="@cita.IdCita" type="hidden" />
+                                                    <button type="submit" class="btn btn-danger">Borrar Cita</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-warning">Esta cita no se puede eliminar porque su estado es '@cita.EstadoCita'.</p>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a asp-action="Edit" asp-controller="Cita" asp-route-id="@cita.IdCita" class="btn btn-link" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form asp-action="HistorialCitas" asp-controller="Cita" method="get" style="display: inline;" title="Ver Historial">
+                                <input type="hidden" name="id" value="@cita.IdCita" />
+                                <button type="submit" class="btn btn-link"><i class="fas fa-history"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        // Si usas alguna librería específica para el counter-up, inicialízala aquí.
+        // Ejemplo simple (puede que necesites una librería como jQuery y counter-up.js):
+        // $(document).ready(function(){
+        //     $('[data-toggle="counter-up"]').counterUp({
+        //         delay: 10,
+        //         time: 1000
+        //     });
+        // });
+    </script>
+}

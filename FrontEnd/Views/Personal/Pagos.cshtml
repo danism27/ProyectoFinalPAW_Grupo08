@@ -1,0 +1,192 @@
+﻿@* *** CORREGIDO: Modelo es IEnumerable<Pago> *** *@
+@model IEnumerable<FrontEnd.Models.Pago>
+
+@{
+    ViewData["Title"] = "Historial de Pagos";
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O el layout que corresponda
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mb-5">Historial de Pagos</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <input type="number" id="citaIdInput" class="form-control border-light" style="padding: 30px;" placeholder="Buscar Pagos por ID Cita">
+                <div class="input-group-append">
+                    <button class="btn btn-primary px-3" id="btnBuscarPagos">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Pagos Registrados</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Pago</th>
+                <th>ID Cita Asociada</th>
+                <th>Monto</th>
+                <th>Método Pago</th>
+                <th>Fecha Pago</th>
+                <th>Propietario</th>
+                <th>Detalles Cita</th> @* Botón para ver detalles de la cita asociada *@
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No hay pagos registrados</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var pago in Model)
+                {
+                    <tr>
+                        <td>@pago.IdPago</td>
+                        <td>@pago.IdCita</td>
+                        <td>@($"${pago.Monto:N2}")</td> @* Formato de moneda *@
+                        <td>@(pago.MetodoPago ?? "N/A")</td>
+                        <td>@(pago.FechaPago?.ToString("g") ?? "Pago Pendiente")</td>
+                        <td>@(pago.IdCitaNavigation?.IdPropietarioNavigation?.Nombre ?? "") @(pago.IdCitaNavigation?.IdPropietarioNavigation?.Apellido ?? "Propietario N/A")</td>
+                        <td>
+                            <button class="btn btn-link btn-detalles-cita" data-id="@pago.IdCita" title="Ver Detalles Cita">
+                                <i class="fas fa-notes-medical"></i> @* Ícono diferente para Cita *@
+                            </button>
+                            @* <button class="btn btn-link btn-detalles-pago" data-id="@pago.IdPago" title="Ver Detalle Pago"> *@
+                            @* <i class="fas fa-search-dollar"></i> *@
+                            @* </button> *@
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Detalles de la Cita y sus Pagos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="citaDetailsContent">Cargando detalles de la cita...</div>
+                <hr />
+                <h5>Pagos Registrados para esta Cita</h5>
+                <div id="pagosDetailsContent">Cargando pagos...</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Función reutilizable para cargar detalles en el modal
+            function cargarDetallesModal(idCita) {
+                if (!idCita) {
+                    alert("ID de Cita inválido.");
+                    return;
+                }
+
+                var modalBodyCita = $("#citaDetailsContent");
+                var modalBodyPagos = $("#pagosDetailsContent");
+                modalBodyCita.html("Cargando detalles de la cita...");
+                modalBodyPagos.html("Cargando pagos...");
+                $("#detailsModal").modal("show");
+
+                // --- 1. AJAX para Detalles de la Cita ---
+                var urlCita = "@Url.Action("ObtenerDetallesCitaJson", "Cita")"; // NECESITAS ESTA ACCIÓN EN CitaController
+                 $.ajax({
+                     url: urlCita,
+                     type: "GET",
+                     data: { id: idCita }, // El parámetro debe ser 'id' si usas el Details estándar
+                     success: function (cita) {
+                          if(cita) {
+                               modalBodyCita.empty().append(`
+                                   <h5>Detalles Cita ID: ${cita.idCita}</h5>
+                                   <p><strong>Propietario:</strong> ${cita.idPropietarioNavigation?.nombre ?? ''} ${cita.idPropietarioNavigation?.apellido ?? 'N/A'}</p>
+                                   <p><strong>Fecha/Hora:</strong> ${cita.fechaHoraCita ? new Date(cita.fechaHoraCita).toLocaleString() : 'N/A'}</p>
+                                   <p><strong>Motivo:</strong> ${cita.motivoConsulta ?? 'N/A'}</p>
+                                   <p><strong>Estado Cita:</strong> ${cita.estadoCita ?? 'N/A'}</p>
+                                   <p><strong>Peso Mascota:</strong> ${cita.pesoMascota ? cita.pesoMascota + ' kg' : 'N/A'}</p>
+                                   <p><strong>Detalles Mascota:</strong> ${cita.detallesMascota ?? 'N/A'}</p>
+                                   <p><strong>Clínica Origen:</strong> ${cita.idClinicaOrigenNavigation?.nombre ?? 'N/A'}</p>
+                                   <p><strong>Veterinario Asignado:</strong> ${cita.idVeterinarioAsignadoNavigation?.nombre ?? ''} ${cita.idVeterinarioAsignadoNavigation?.apellido ?? 'N/A'}</p>
+                               `);
+                          } else {
+                               modalBodyCita.html("<p>No se encontraron detalles para esta cita.</p>");
+                          }
+                     },
+                     error: function () {
+                          modalBodyCita.html("<p class='text-danger'>Error al cargar los detalles de la cita.</p>");
+                     }
+                 });
+
+
+                // --- 2. AJAX para Pagos de la Cita ---
+                 // *** CORREGIDO: URL apunta a PagoController (o donde esté la acción) ***
+                var urlPagos = "@Url.Action("ObtenerPagosPorCitaJson", "Pago")"; // NECESITAS ESTA ACCIÓN EN PagoController
+                $.ajax({
+                    url: urlPagos,
+                    type: "GET",
+                    data: { idCita: idCita },
+                    success: function (pagos) {
+                        modalBodyPagos.empty();
+                        if (pagos && pagos.length > 0) {
+                            pagos.forEach(function (pago) {
+                                // *** CORREGIDO: Usar nombres de propiedad del modelo Pago ***
+                                modalBodyPagos.append(`
+                                    <div class="pago-item mb-2 border-bottom">
+                                        <p><strong>Pago ID:</strong> ${pago.idPago}</p>
+                                        <p><strong>Monto:</strong> $${pago.monto ? pago.monto.toFixed(2) : '0.00'}</p>
+                                        <p><strong>Método de Pago:</strong> ${pago.metodoPago || 'N/A'}</p>
+                                        <p><strong>Fecha de Pago:</strong> ${pago.fechaPago ? new Date(pago.fechaPago).toLocaleString() : 'Pago Pendiente'}</p>
+                                     </div>
+                                `);
+                            });
+                        } else {
+                            modalBodyPagos.append("<p>No hay pagos registrados para esta cita.</p>");
+                        }
+                    },
+                    error: function () {
+                         modalBodyPagos.html("<p class='text-danger'>Error al cargar los detalles de pago.</p>");
+                    }
+                });
+            }
+
+            // Evento para los botones de detalles en la tabla
+            $(".btn-detalles-cita").click(function () {
+                var idCita = $(this).data("id");
+                cargarDetallesModal(idCita);
+            });
+
+            // Evento para el botón de búsqueda/track en el header
+             $("#btnBuscarPagos").click(function () {
+                 var idCita = $("#citaIdInput").val().trim();
+                 if (idCita === "" || isNaN(idCita)) {
+                    alert("Ingrese un ID de Cita numérico válido.");
+                    return;
+                 }
+                 cargarDetallesModal(parseInt(idCita)); // Llama a la misma función
+             });
+
+             // Opcional: Permitir búsqueda al presionar Enter en el input
+             $("#citaIdInput").keypress(function(event) {
+                if (event.which == 13) { // Código 13 es Enter
+                    event.preventDefault(); // Prevenir submit si estuviera en un form
+                    $("#btnBuscarPagos").click(); // Simular click en el botón
+                }
+            });
+        });
+    </script>
+}

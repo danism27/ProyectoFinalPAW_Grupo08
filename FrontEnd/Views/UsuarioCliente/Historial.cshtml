@@ -1,0 +1,184 @@
+﻿@model IEnumerable<FrontEnd.Models.HistorialCita>
+@{
+    ViewData["Title"] = "Historial de Cita"; // Título actualizado
+    Layout = "~/Views/Shared/_LayoutPaqueteHistorial.cshtml"; // Revisa si este layout necesita cambios
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Consulta Historial de Cambios</h1>
+        <h1 class="text-white display-3 mb-5">Cambios Cronológicos de la Cita</h1> @* Texto actualizado *@
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            @* Puedes añadir info de la Cita aquí si la pasas por ViewBag o un ViewModel *@
+            @* Ejemplo: <h2 class="text-white">Cita ID: @ViewBag.CitaId</h2> *@
+        </div>
+    </div>
+</div>
+
+<div class="timelinePaquetes">
+    @* Considera renombrar esta clase CSS si es específica de paquetes *@
+
+    @{
+        int index = 0; // Contador para alternar diseño
+    }
+    @foreach (var historialEntry in Model) @* Renombrada variable de bucle *@
+    {
+        index++; // Incrementar contador
+
+        // Determinar el contenido principal del evento del historial
+        string cambioInfo = $"Estado: de '{historialEntry.EstadoAnterior ?? "N/A"}' a '{historialEntry.EstadoNuevo ?? "N/A"}'";
+        string detalles = $"Ubicación registrada: {historialEntry.UbicacionActual ?? "No especificada"}";
+        string modificadoPor = historialEntry.IdPersonalModificacionNavigation != null
+        ? $"Modificado por: {historialEntry.IdPersonalModificacionNavigation.Nombre} {historialEntry.IdPersonalModificacionNavigation.Apellido}"
+        : "Modificado por: Sistema/Desconocido";
+
+
+        if (index % 2 != 0) // Lógica de alternancia basada en contador
+        {
+            <div class="containertimelinepaquete leftcontenttimeline">
+                @* Revisa nombres de clases CSS *@
+                <div class="contenttimeline">
+                    @* Usando propiedades de HistorialCita*@
+                    <h2>@(historialEntry.FechaCambio?.ToString("dd MMMM yyyy HH:mm") ?? "Fecha no disponible")</h2> @* Fecha del cambio *@
+                    <h4>@cambioInfo</h4> @* Información principal del cambio *@
+                    <p>@detalles</p> @* Detalles adicionales *@
+                    <small>@modificadoPor</small> @* Quién modificó *@
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="containertimelinepaquete rightcontenttimeline">
+                @* Revisa nombres de clases CSS *@
+                <div class="contenttimeline">
+                    @* Usando propiedades de HistorialCita*@
+                    <h2>@(historialEntry.FechaCambio?.ToString("dd MMMM yyyy HH:mm") ?? "Fecha no disponible")</h2> @* Fecha del cambio *@
+                    <h4>@cambioInfo</h4> @* Información principal del cambio *@
+                    <p>@detalles</p>@* Detalles adicionales *@
+                    <small>@modificadoPor</small> @* Quién modificó *@
+                </div>
+            </div>
+        }
+    }
+
+   
+</div>
+
+@section Styles {
+
+    <style>
+        /* Estilos básicos para la línea de tiempo (Ejemplo, adapta según tu CSS) */
+        .timelinePaquetes {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+            .timelinePaquetes::after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                background-color: #007bff; /* Color primario o el que uses */
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -3px;
+            }
+
+        .containertimelinepaquete {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+            /* Círculo en la línea de tiempo */
+            .containertimelinepaquete::after {
+                content: '';
+                position: absolute;
+                width: 25px;
+                height: 25px;
+                right: -17px;
+                background-color: white;
+                border: 4px solid #FF9F55; /* Color secundario o el que uses */
+                top: 15px;
+                border-radius: 50%;
+                z-index: 1;
+            }
+
+        .leftcontenttimeline {
+            left: 0;
+        }
+
+        .rightcontenttimeline {
+            left: 50%;
+        }
+
+        /* Flechas */
+        .leftcontenttimeline::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+
+        .rightcontenttimeline::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+        /* Posicionar círculos en la línea */
+        .rightcontenttimeline::after {
+            left: -16px;
+        }
+
+        .contenttimeline {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* Media Query para pantallas pequeñas */
+        @@media screen and (max-width: 600px) {
+            .timelinePaquetes::after {
+                left: 31px;
+            }
+
+            .containertimelinepaquete {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+                .containertimelinepaquete::before {
+                    left: 60px;
+                    border: medium solid white;
+                    border-width: 10px 10px 10px 0;
+                    border-color: transparent white transparent transparent;
+                }
+
+            .leftcontenttimeline::after, .rightcontenttimeline::after {
+                left: 15px;
+            }
+
+            .rightcontenttimeline {
+                left: 0%;
+            }
+        }
+    </style>
+}

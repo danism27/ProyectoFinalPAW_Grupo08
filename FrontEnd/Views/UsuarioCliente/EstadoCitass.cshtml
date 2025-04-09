@@ -1,0 +1,167 @@
+﻿@* Cambiando el modelo a IEnumerable<Cita> podría simplificar el acceso a datos de la cita.
+   Si se mantiene CitaPersonalClinica, se accede a la cita via IdCitaNavigation.
+   Asegúrate de que los estados usados ("Completada", "Confirmada", etc.) coincidan con los posibles valores de Cita.EstadoCita[cite: 5].
+   Las propiedades de navegación (IdCitaNavigation, IdClinicaNavigation, etc.) deben cargarse (Eager Loading) en el controlador. *@
+@model IEnumerable<FrontEnd.Models.CitaPersonalClinica>
+@{
+    ViewData["Title"] = "Estado de Citas"; // Título actualizado
+    Layout = "~/Views/Shared/_LayoutClientes.cshtml"; // Asumiendo que este Layout sigue siendo relevante
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h4 class="text-white display-3 mb-4">Mis Mascotas</h4> // Texto actualizado
+        <h4 class="text-primary display-3 mb-5">Estado de mis Citas</h4> // Texto actualizado
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                @* Actualizar controlador/acción si es necesario *@
+                <form asp-controller="UsuarioCliente" asp-action="EstadoCitas" method="get" class="w-100 d-flex">
+                    @* Cambiado 'buscar' y placeholder *@
+                    <input type="text" name="buscarCitaId" class="form-control border-light" style="padding: 30px;" placeholder="ID Cita">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar Cita</button> // Texto actualizado
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">Estado de Citas</h4> // Título actualizado
+                    @* Contar citas con estado relevante, p.ej. 'Completada' o 'Confirmada' via navegación *@
+                    <h1 class="text-primary mb-2" data-toggle="counter-up">@Model.Count(c => c.IdCitaNavigation?.EstadoCita == "Completada" || c.IdCitaNavigation?.EstadoCita == "Confirmada")</h1>
+                    @* Enlace actualizado *@
+                    <a href="@Url.Action("Citas","UsuarioCliente")" class="btn btn-outline-dark btn-sm mt-2">Ver Todas las Citas</a>
+                    <ul class="list-inline row mt-4">
+                        <li class="col-6">
+                            @* Contar citas completadas via navegación *@
+                            <h5 class="text-dark">@Model.Count(c => c.IdCitaNavigation?.EstadoCita == "Completada")</h5>
+                            <p class="mb-0 text-muted">Completadas</p> // Texto actualizado
+                        </li>
+                        <li class="col-6">
+                            @* Contar citas confirmadas/pendientes via navegación *@
+                            <h5 class="text-dark">@Model.Count(c => c.IdCitaNavigation?.EstadoCita == "Confirmada")</h5>
+                            <p class="mb-0 text-muted">Confirmadas</p> // Texto actualizado (o Pendientes/Próximas)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Citas</h4> // Título actualizado
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                @* Cabeceras de tabla actualizadas *@
+                <th>ID Cita</th>
+                <th>Clínica Destino</th>
+                <th>Propietario</th>
+                <th>Motivo Consulta</th>
+                <th>Fecha y Hora</th>
+                <th>Veterinario Asignado</th> @* O Personal Asignado *@
+                <th>Estado Cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="8" class="text-center text-muted">No hay citas registradas</td> @* Colspan actualizado *@
+                </tr>
+            }
+            else
+            {
+                @* Filtrar por estados relevantes si es necesario, o mostrar todas *@
+                @foreach (var item in Model) @* Renombrada variable de bucle *@
+                {
+                    <tr>
+                        @* Acceder a datos via navegación desde item (CitaPersonalClinica) *@
+                        <td>@item.IdCitaNavigation?.IdCita</td>
+                        <td>@item.IdClinicaNavigation?.Nombre</td> @* Nombre de la clínica donde está asignado el personal para esa cita *@
+                        <td>@item.IdCitaNavigation?.IdPropietarioNavigation?.Nombre @item.IdCitaNavigation?.IdPropietarioNavigation?.Apellido</td> @* Nombre propietario via Cita *@
+                        <td>@item.IdCitaNavigation?.MotivoConsulta</td>
+                        <td>@(item.IdCitaNavigation?.FechaHoraCita?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                        <td>@item.IdPersonalNavigation?.Nombre @item.IdPersonalNavigation?.Apellido</td> @* Nombre personal asignado a esta entrada CitaPersonalClinica *@
+                        <td>
+                            @* Lógica de estado basada en Cita.EstadoCita *@
+                            @{
+                                var estado = item.IdCitaNavigation?.EstadoCita ?? "Desconocido";
+                                var color = estado == "Completada" ? "#1F1F2E" : (estado == "Confirmada" ? "#007bff" : (estado == "Cancelada" ? "#dc3545" : "#6c757d"));
+                            }
+                            <strong style="color: @color;">@estado</strong>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start">
+                                @* Actualizar data-target e id del modal con idCita *@
+                                <button class="btn btn-link text-info" data-toggle="modal" data-target="#detailsModal-@item.IdCitaNavigation?.IdCita">
+                                    <i class="fas fa-eye"></i> @* Ícono cambiado a 'ver' *@
+                                </button>
+
+                                @* Actualizar id del modal con idCita *@
+                                <div class="modal fade" id="detailsModal-@item.IdCitaNavigation?.IdCita" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@item.IdCitaNavigation?.IdCita" aria-hidden="true">
+                                    <div class="modal-dialog modal-md" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                @* Actualizar id y título del modal *@
+                                                <h5 class="modal-title" id="detailsModalLabel-@item.IdCitaNavigation?.IdCita">Detalles de la Cita</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @* Mostrar detalles relevantes de la Cita*@
+                                                <p><strong>ID Cita:</strong> @item.IdCitaNavigation?.IdCita</p>
+                                                <p><strong>Propietario:</strong> @item.IdCitaNavigation?.IdPropietarioNavigation?.Nombre @item.IdCitaNavigation?.IdPropietarioNavigation?.Apellido</p>
+                                                <p><strong>Correo Propietario:</strong> @item.IdCitaNavigation?.IdPropietarioNavigation?.Correo</p>
+                                                <p><strong>Clínica Origen:</strong> @item.IdCitaNavigation?.IdClinicaOrigenNavigation?.Nombre ?? "N/A"</p>
+                                                <p><strong>Clínica Destino:</strong> @item.IdCitaNavigation?.IdClinicaDestinoNavigation?.Nombre ?? "N/A"</p>
+                                                <p><strong>Fecha y Hora:</strong> @(item.IdCitaNavigation?.FechaHoraCita?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</p>
+                                                <p><strong>Motivo Consulta:</strong> @item.IdCitaNavigation?.MotivoConsulta</p>
+                                                <p><strong>Detalles Mascota:</strong> @item.IdCitaNavigation?.DetallesMascota</p>
+                                                <p><strong>Peso Mascota:</strong> @item.IdCitaNavigation?.PesoMascota?.ToString("N2") kg</p>
+                                                <p><strong>Estado Cita:</strong> @item.IdCitaNavigation?.EstadoCita</p>
+                                                <p><strong>Veterinario Asignado (General):</strong> @item.IdCitaNavigation?.IdVeterinarioAsignadoNavigation?.Nombre @item.IdCitaNavigation?.IdVeterinarioAsignadoNavigation?.Apellido ?? "No asignado"</p>
+                                                @* Podrías listar todos los personal asignados desde CitaPersonalClinicas si fuera necesario *@
+                                                <p><strong>Personal Asignado (Específico):</strong> @item.IdPersonalNavigation?.Nombre @item.IdPersonalNavigation?.Apellido (@item.IdPersonalNavigation?.IdRolNavigation?.NombreRol)</p>
+                                                <p><strong>Clínica Asignación Personal:</strong> @item.IdClinicaNavigation?.Nombre</p>
+                                                <p><strong>Fecha Asignación Personal:</strong> @(item.FechaAsignacion?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</p>
+                                                <hr />
+                                                @* Podrías añadir pagos relacionados (item.IdCitaNavigation?.Pagos) [cite: 11, 34-37, 60, 90] o historial (item.IdCitaNavigation?.HistorialCitas) [cite: 11, 23-27, 59] *@
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* Asumiendo que la acción Historial espera 'idCita' *@
+                                <form asp-action="HistorialCita" asp-controller="UsuarioCliente" method="get">
+                                    @* Cambiado a GET si solo necesita el ID *@
+                                    <input type="hidden" name="idCita" value="@item.IdCitaNavigation?.IdCita" />
+                                    <button type="submit" class="btn btn-link text-secondary" title="Ver Historial">
+                                        <i class="fas fa-history"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+@* Remover toda la sección de Modales y Scripts relacionados con entrega a domicilio/sucursal *@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @* Añadir aquí scripts específicos si son necesarios para la nueva funcionalidad *@
+}

@@ -1,0 +1,154 @@
+﻿@* Updated model reference, assuming CitaPersonalClinica links appointments, staff, and clinics *@
+@model IEnumerable<FrontEnd.Models.CitaPersonalClinica>
+@{
+    // Updated title for managing assignments
+    ViewData["Title"] = "Gestión de Asignaciones de Citas";
+    // Updated layout (assuming a general or staff-specific layout)
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Or potentially _LayoutPersonal.cshtml
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container text-center py-5">
+        <h1 class="text-white display-3 mb-5">Gestión de Personal Asignado a Citas</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <form asp-controller="CitaPersonal" asp-action="Index" method="get" class="w-100 d-flex">
+                    @* Example: Assuming CitaPersonalController, Index action *@
+                    <input type="text" name="filtroBusqueda" class="form-control border-light" style="padding: 30px;" placeholder="Buscar por ID Cita, ID Personal o Clínica">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary px-3">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <h4 class="mb-4 text-primary">Lista de Asignaciones (Personal a Citas)</h4>
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID Asignación</th>
+                <th>ID Cita</th>
+                <th>Clínica Asignada</th>
+                <th>Personal Asignado</th>
+                <th>Fecha Asignación</th>
+                <th>Estado de la Cita</th> @* Fetching status from related Cita *@
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || !Model.Any()) // Check if Model is null or empty
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No hay asignaciones registradas o que coincidan con la búsqueda</td> @* Updated colspan *@
+                </tr>
+            }
+            else
+            {
+                // Loop through the CitaPersonalClinica model items
+                foreach (var asignacion in Model)
+                {
+                    <tr>
+                        <td>@asignacion.IdCitaPersonalClinica</td>
+                        <td>@(asignacion.IdCitaNavigation?.IdCita.ToString() ?? "N/A")</td> @* Display related Cita ID safely *@
+                        <td>@(asignacion.IdClinicaNavigation?.Nombre ?? "N/A")</td> @* Display related Clinic Name safely *@
+                        <td>
+                            @* Display related Personal Name safely *@
+                            @(asignacion.IdPersonalNavigation?.Nombre ?? "N/A") @(asignacion.IdPersonalNavigation?.Apellido ?? "")
+                        </td>
+                        <td>@(asignacion.FechaAsignacion?.ToString("yyyy-MM-dd HH:mm") ?? "N/A")</td> @* Display assignment date safely *@
+                        <td>
+                            @* Display related Cita Status safely and apply styling *@
+                            @{
+                                var estadoCita = asignacion.IdCitaNavigation?.EstadoCita ?? "Desconocido";
+                                var colorEstado = "#757575"; // Default color
+                                if (estadoCita == "Confirmada") colorEstado = "#1F1F2E"; // Dark Blue/Black for Confirmed
+                                else if (estadoCita == "Pendiente") colorEstado = "#FFC107"; // Amber/Yellow for Pending
+                                else if (estadoCita == "Realizada") colorEstado = "#28A745"; // Green for Completed
+                                else if (estadoCita == "Cancelada") colorEstado = "#DC3545"; // Red for Cancelled
+                                else if (estadoCita == "No Asistió") colorEstado = "#6C757D"; // Grey for No Show
+                            }
+                            <strong style="color: @colorEstado">
+                                @estadoCita
+                            </strong>
+                        </td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#detailsModalUpdate-@asignacion.IdCitaPersonalClinica">
+                                <i class="fas fa-edit"></i> Editar Asignación
+                            </button>
+
+                            <div class="modal fade" id="detailsModalUpdate-@asignacion.IdCitaPersonalClinica" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@asignacion.IdCitaPersonalClinica" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalLabel-@asignacion.IdCitaPersonalClinica">Editar Asignación de Personal/Clínica</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>ID Asignación:</strong> @asignacion.IdCitaPersonalClinica</p>
+                                            <p><strong>ID Cita:</strong> @(asignacion.IdCitaNavigation?.IdCita.ToString() ?? "N/A")</p>
+                                            <p><strong>Propietario Cita:</strong> @(asignacion.IdCitaNavigation?.IdPropietarioNavigation?.Nombre ?? "N/A") @(asignacion.IdCitaNavigation?.IdPropietarioNavigation?.Apellido ?? "")</p>
+                                            <p><strong>Fecha Asignación Actual:</strong> @(asignacion.FechaAsignacion?.ToString("yyyy-MM-dd HH:mm") ?? "N/A")</p>
+
+                                            <hr>
+                                            <form asp-action="ActualizarAsignacion" asp-controller="CitaPersonal" method="post">
+                                                @* Example: Target new action/controller *@
+                                                <input type="hidden" name="IdCitaPersonalClinica" value="@asignacion.IdCitaPersonalClinica" />
+                                                <input type="hidden" name="IdCita" value="@(asignacion.IdCita ?? 0)" /> @* Pass Cita ID if needed for context *@
+
+                                                <div class="form-group">
+                                                    <label for="ClinicaId-@asignacion.IdCitaPersonalClinica">Clínica Asignada:</label>
+                                                    @* Dropdown populated from ViewBag or ViewModel with available Clinics *@
+                                                    <select name="IdClinica" id="ClinicaId-@asignacion.IdCitaPersonalClinica" class="form-control" required>
+                                                        @if (ViewBag.Clinicas != null)
+                                                        {
+                                                            foreach (var clinica in ViewBag.Clinicas as List<Clinica>)
+                                                            {
+                                                                <option value="@clinica.IdClinica" selected="@(asignacion.IdClinica == clinica.IdClinica)">
+                                                                    @clinica.Nombre
+                                                                </option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="">-- No hay clínicas disponibles --</option>
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="PersonalId-@asignacion.IdCitaPersonalClinica">Personal Asignado (Veterinario/Asistente):</label>
+                                                    @* Dropdown populated from ViewBag or ViewModel with available Staff (filtered by role if necessary) *@
+                                                    <select name="IdPersonal" id="PersonalId-@asignacion.IdCitaPersonalClinica" class="form-control" required>
+                                                        @if (ViewBag.PersonalDisponible != null)
+                                                        {
+                                                            foreach (var personal in ViewBag.PersonalDisponible as List<Personal>)
+                                                            {
+                                                                <option value="@personal.IdPersonal" selected="@(asignacion.IdPersonal == personal.IdPersonal)">
+                                                                    @personal.Nombre @personal.Apellido (@personal.IdRolNavigation?.NombreRol ?? "Sin Rol")
+                                                                </option>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="">-- No hay personal disponible --</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <hr />
+                                                <button type="submit" class="btn btn-primary">Actualizar Asignación</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

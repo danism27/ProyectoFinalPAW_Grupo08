@@ -1,0 +1,174 @@
+﻿@model FrontEnd.Models.Cita
+@{
+    // *** CORREGIDO: Título y Layout ***
+    ViewData["Title"] = "Registrar Nueva Cita";
+    Layout = "~/Views/Shared/_LayoutUsuarios.cshtml"; // O el layout que corresponda
+    // La variable usuarioId no se usa directamente en el modelo Cita para la creación según el controller.
+    // Se podría usar si la lógica de asignación o historial lo requiriera explícitamente al crear.
+    // var usuarioId = Context.Session.GetString("UsuarioId");
+}
+
+<div class="jumbotron jumbotron-fluid mb-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 py-5 py-lg-0">
+                <h1 class="text-white mb-4">Registro de Nueva Cita</h1>
+                <p class="text-white-50 mb-4">Ingrese la Cédula para buscar al propietario y autocompletar sus datos.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary py-5 px-4 px-sm-5">
+
+                    <div class="form-group">
+                        <input id="CedulaBuscar" type="text" class="form-control border-0 p-4" placeholder="Cédula Propietario (Ej: 112345678)" name="CedulaBuscar"
+                               pattern="\d{9,10}" title="La cédula debe tener 9 o 10 dígitos." required="required" />
+                    </div>
+                    <div>
+                        <button id="buscarPropietario" class="btn btn-dark btn-block border-0 py-3" type="button">Buscar Propietario</button>
+                    </div>
+                    <hr class="my-4" style="border-top: 1px solid rgba(255, 255, 255, 0.5);" />
+
+                    <form class="pt-2" asp-controller="Cita" asp-action="Create" method="post" id="registrationForm">
+                        @* Mensaje de éxito después de redirigir desde el POST *@
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+                        @* Mostrar errores de validación del modelo *@
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-group">
+                            <input asp-for="IdPropietario" id="IdPropietario" type="hidden" class="form-control" />
+                            <span asp-validation-for="IdPropietario" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="IdClinicaOrigen" class="text-white">Clínica de Origen</label>
+                            <select asp-for="IdClinicaOrigen" class="form-control border-0 p-4" asp-items="ViewBag.IdClinicaOrigen" required="required">
+                                <option value="">-- Seleccione Clínica --</option>
+                            </select>
+                            <span asp-validation-for="IdClinicaOrigen" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="FechaHoraCita" class="text-white">Fecha y Hora de la Cita</label>
+                            <input asp-for="FechaHoraCita" type="datetime-local" class="form-control border-0 p-4" required="required" />
+                            <span asp-validation-for="FechaHoraCita" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="MotivoConsulta" class="text-white">Motivo de la Consulta</label>
+                            <textarea asp-for="MotivoConsulta" class="form-control border-0 p-4" placeholder="Motivo de la Consulta" rows="3"></textarea>
+                            <span asp-validation-for="MotivoConsulta" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PesoMascota" class="text-white">Peso Mascota (kg)</label>
+                            <input asp-for="PesoMascota" type="number" step="0.01" class="form-control border-0 p-4" placeholder="Peso en kg (Ej: 5.5)" />
+                            <span asp-validation-for="PesoMascota" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DetallesMascota" class="text-white">Detalles Mascota (Raza, Edad, etc.)</label>
+                            <input asp-for="DetallesMascota" type="text" class="form-control border-0 p-4" placeholder="Raza, Edad, Color, etc." />
+                            <span asp-validation-for="DetallesMascota" class="text-danger"></span>
+                        </div>
+
+                        <hr class="my-4" style="border-top: 1px solid rgba(255, 255, 255, 0.5);" />
+                        <h6 class="text-white font-weight-bold">Datos del Propietario (encontrado)</h6>
+                        <div class="form-group">
+                            <input id="nombrePropietario" type="text" class="form-control border-0 p-4" placeholder="Nombre Propietario" disabled />
+                        </div>
+                        <div class="form-group">
+                            <input id="CedulaPropietario" type="text" class="form-control border-0 p-4" placeholder="Cédula Propietario" disabled />
+                        </div>
+                        <div class="form-group">
+                            <input id="EmailPropietario" type="email" class="form-control border-0 p-4" placeholder="Correo Electrónico Propietario" disabled />
+                        </div>
+                        <div class="form-group">
+                            <input id="TelefonoPropietario" type="text" class="form-control border-0 p-4" placeholder="Teléfono Propietario" disabled />
+                        </div>
+
+                        <div>
+                            <button id="registrarCita" class="btn btn-dark btn-block border-0 py-3" type="submit">Registrar Cita</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Deshabilitar submit hasta encontrar propietario
+            $("#registrarCita").prop("disabled", true);
+
+            // *** CORREGIDO: AJAX para buscar Propietario ***
+            $("#buscarPropietario").click(function () {
+                var cedula = $("#CedulaBuscar").val();
+                // Validación simple de cédula
+                 if (!cedula || !/^\d{9,10}$/.test(cedula)) {
+                     alert("Por favor, ingrese una cédula válida (9 o 10 dígitos).");
+                     return;
+                 }
+
+                // *** CORREGIDO: URL apunta a CitaController (o donde esté tu acción AJAX) ***
+                var url = "@Url.Action("BuscarPropietarioPorCedulaAjax", "Cita")"; // Ajusta el nombre de la acción y controlador
+                var data = { cedula: cedula }; // El parámetro debe coincidir con la acción del controlador
+
+                $.post(url, data).done(function (propietarioModelo) {
+                    // *** CORREGIDO: Usar propiedades del Propietario ***
+                    if (propietarioModelo && propietarioModelo.idPropietario && propietarioModelo.idPropietario != 0) {
+                        alert("Propietario encontrado: " + propietarioModelo.nombre + " " + propietarioModelo.apellido);
+                        // Llenar campos ocultos y de display
+                        $("#IdPropietario").val(propietarioModelo.idPropietario);
+                        $("#nombrePropietario").val(propietarioModelo.nombre + " " + propietarioModelo.apellido);
+                        $("#CedulaPropietario").val(cedula); // Usar la cédula buscada para mostrar
+                        $("#EmailPropietario").val(propietarioModelo.correo || 'N/A'); // Manejar nulos
+                        $("#TelefonoPropietario").val(propietarioModelo.telefono || 'N/A'); // Manejar nulos
+
+                        // Habilitar el botón de registro
+                        $("#registrarCita").prop("disabled", false);
+                        // Limpiar validación del IdPropietario si existiera
+                         $('#IdPropietario').closest('.form-group').find('.text-danger').text('');
+
+
+                    } else {
+                        alert("No se encuentra un propietario con la cédula " + cedula + ".\nDebe registrar al propietario primero.");
+                        // Limpiar campos y deshabilitar submit
+                        $("#IdPropietario").val('');
+                        $("#nombrePropietario").val('');
+                        $("#CedulaPropietario").val('');
+                        $("#EmailPropietario").val('');
+                        $("#TelefonoPropietario").val('');
+                        $("#registrarCita").prop("disabled", true);
+                         // Podrías añadir un mensaje de validación visual
+                         $('#IdPropietario').closest('.form-group').find('.text-danger').text('Debe seleccionar un propietario válido.');
+                    }
+                }).fail(function() {
+                     alert("Error al buscar el propietario. Verifique la cédula o intente más tarde.");
+                     $("#registrarCita").prop("disabled", true);
+                });
+            });
+
+             // Limpiar campos si se cambia la cédula después de buscar
+             $('#CedulaBuscar').on('input', function() {
+                 if ($("#IdPropietario").val() !== '') { // Si ya se había encontrado uno
+                     $("#IdPropietario").val('');
+                     $("#nombrePropietario").val('');
+                     $("#CedulaPropietario").val('');
+                     $("#EmailPropietario").val('');
+                     $("#TelefonoPropietario").val('');
+                     $("#registrarCita").prop("disabled", true);
+                     $('#IdPropietario').closest('.form-group').find('.text-danger').text('Debe volver a buscar el propietario.');
+                 }
+             });
+        });
+    </script>
+}
