@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore; // Importar Entity Framework Core
-using FrontEnd.Models; // Asegúrate que este namespace contiene ProyectoVeterinariaContext
+using FrontEnd.Models; // Asegúrate de que este namespace contiene ProyectoVeterinariaContext
 using FrontEnd.Services;
 using FrontEnd.Controllers;
 
@@ -23,17 +23,15 @@ builder.Services.AddSession(options =>
     // options.Cookie.IsEssential = true; // Descomentar si se necesita para GDPR compliance
 });
 
-// No es necesario volver a agregar esto si ya se hizo arriba
-// builder.Services.AddControllersWithViews(); 
-
 // Registrar el servicio de correo y su interfaz
 builder.Services.AddTransient<ICorreoService, CorreoService>();
 
-// Registrar el controlador de correo (aunque esto generalmente no es necesario si usa el descubrimiento estándar de controladores)
-// builder.Services.AddTransient<CorreoController, CorreoController>(); // Puedes comentar o eliminar esta línea si no es estrictamente necesaria
+// Registrar otros servicios necesarios si hay algún controlador o servicio adicional
+// Si tienes controladores específicos que se necesitan agregar explícitamente puedes agregarlos aquí.
+// builder.Services.AddTransient<CorreoController, CorreoController>(); // Si tienes un controlador, puedes registrarlo si es necesario
 
-// testing - Esta línea generalmente no es necesaria en .NET 6+ a menos que tengas una configuración muy específica
-//builder.Services.AddMvc().AddControllersAsServices(); 
+// Se puede agregar el MVC si se necesita, pero ya lo tienes con `AddControllersWithViews`
+//builder.Services.AddMvc().AddControllersAsServices(); // Opcional según necesidades
 
 var app = builder.Build();
 
@@ -41,11 +39,11 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    // app.UseHsts(); // Descomentar si se usa HSTS
+    // El valor predeterminado de HSTS es de 30 días. Puedes cambiar esto para escenarios de producción
+    // app.UseHsts(); // Descomentar si se usa HSTS (HTTP Strict Transport Security)
 }
 
-// HTTPS Redirection y Static Files suelen ir antes de Routing
+// Redirección a HTTPS y Static Files suelen ir antes de Routing
 // app.UseHttpsRedirection(); // Descomentar si se fuerza HTTPS
 app.UseStaticFiles();
 
@@ -57,6 +55,6 @@ app.UseAuthorization(); // Debe ir después de UseRouting y UseAuthentication/Use
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"); // Ruta predeterminada
 
 app.Run();

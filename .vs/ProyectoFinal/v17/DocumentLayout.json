@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "FrontEnd\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "FrontEnd\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAmwHsBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-14T23:54:38.939Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

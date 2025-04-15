@@ -7777,11 +7777,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoSebastián\\ProyectoFinal\\FrontEnd\\FrontEnd.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoSebas Copia\\FrontEnd\\FrontEnd.csproj",
       "projectName": "FrontEnd",
-      "projectPath": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoSebastián\\ProyectoFinal\\FrontEnd\\FrontEnd.csproj",
+      "projectPath": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoSebas Copia\\FrontEnd\\FrontEnd.csproj",
       "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoSebastián\\ProyectoFinal\\FrontEnd\\obj\\",
+      "outputPath": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoSebas Copia\\FrontEnd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

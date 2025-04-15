@@ -91,8 +91,8 @@
   },
   {
     "ContainingType": "FrontEnd.Controllers.CorreoController",
-    "Method": "EnviarCorreoInicioSesionPropietario",
-    "RelativePath": "api/Correo/EnviarCorreoInicioSesionPropietario",
+    "Method": "EnviarCorreoInicioSesionCliente",
+    "RelativePath": "api/Correo/EnviarCorreoInicioSesionCliente",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

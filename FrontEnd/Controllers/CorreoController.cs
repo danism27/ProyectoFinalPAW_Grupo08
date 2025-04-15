@@ -165,8 +165,8 @@ namespace FrontEnd.Controllers
             }
         }
 
-        [HttpPost("EnviarCorreoInicioSesionPropietario")]
-        public async Task<ActionResult> EnviarCorreoInicioSesionPropietario(Propietario propietario)
+        [HttpPost("EnviarCorreoInicioSesionCliente")]
+        public async Task<ActionResult> EnviarCorreoInicioSesionCliente(Propietario propietario)
         {
             if (propietario == null)
             {

@@ -91,7 +91,7 @@
                         </div>
 
                         <div>
-                            <button id="registrarCita" class="btn btn-dark btn-block border-0 py-3" type="submit">Registrar Cita</button>
+                            <button id="AsignarCitas" class="btn btn-dark btn-block border-0 py-3" type="submit">Registrar Cita</button>
                         </div>
                     </form>
                 </div>
@@ -107,7 +107,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             // Deshabilitar submit hasta encontrar propietario
-            $("#registrarCita").prop("disabled", true);
+            $("#AsignarCitas").prop("disabled", true);
 
             // *** CORREGIDO: AJAX para buscar Propietario ***
             $("#buscarPropietario").click(function () {
@@ -134,7 +134,7 @@
                         $("#TelefonoPropietario").val(propietarioModelo.telefono || 'N/A'); // Manejar nulos
 
                         // Habilitar el botón de registro
-                        $("#registrarCita").prop("disabled", false);
+                        $("#AsignarCitas").prop("disabled", false);
                         // Limpiar validación del IdPropietario si existiera
                          $('#IdPropietario').closest('.form-group').find('.text-danger').text('');
 
@@ -147,13 +147,13 @@
                         $("#CedulaPropietario").val('');
                         $("#EmailPropietario").val('');
                         $("#TelefonoPropietario").val('');
-                        $("#registrarCita").prop("disabled", true);
+                        $("#AsignarCitas").prop("disabled", true);
                          // Podrías añadir un mensaje de validación visual
                          $('#IdPropietario').closest('.form-group').find('.text-danger').text('Debe seleccionar un propietario válido.');
                     }
                 }).fail(function() {
                      alert("Error al buscar el propietario. Verifique la cédula o intente más tarde.");
-                     $("#registrarCita").prop("disabled", true);
+                     $("#AsignarCitas").prop("disabled", true);
                 });
             });
 
@@ -165,7 +165,7 @@
                      $("#CedulaPropietario").val('');
                      $("#EmailPropietario").val('');
                      $("#TelefonoPropietario").val('');
-                     $("#registrarCita").prop("disabled", true);
+                     $("#AsignarCitas").prop("disabled", true);
                      $('#IdPropietario').closest('.form-group').find('.text-danger').text('Debe volver a buscar el propietario.');
                  }
              });

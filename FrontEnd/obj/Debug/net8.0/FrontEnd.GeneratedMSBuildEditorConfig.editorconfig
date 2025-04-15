@@ -17,205 +17,205 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FrontEnd
 build_property.RootNamespace = FrontEnd
-build_property.ProjectDir = C:\Users\danie\source\repos\Avanzada en web\ProyectoSebastián\ProyectoFinal\FrontEnd\
+build_property.ProjectDir = C:\Users\danie\source\repos\Avanzada en web\ProyectoSebas Copia\FrontEnd\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\danie\source\repos\Avanzada en web\ProyectoSebastián\ProyectoFinal\FrontEnd
+build_property.MSBuildProjectDirectory = C:\Users\danie\source\repos\Avanzada en web\ProyectoSebas Copia\FrontEnd
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Acceso/EnviarCodigoSeguridad.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Acceso/EnviarCodigoSeguridad.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEVudmlhckNvZGlnb1NlZ3VyaWRhZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Acceso/EnviarContrasenaNueva.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Acceso/EnviarContrasenaNueva.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEVudmlhckNvbnRyYXNlbmFOdWV2YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Acceso/InicioSesionCliente.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Acceso/InicioSesionCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEluaWNpb1Nlc2lvbkNsaWVudGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Acceso/InicioSesionUsuario.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Acceso/InicioSesionUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXEluaWNpb1Nlc2lvblVzdWFyaW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Acceso/RegistroCliente.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Acceso/RegistroCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFJlZ2lzdHJvQ2xpZW50ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Acceso/RegistroUsuario.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Acceso/RegistroUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNvXFJlZ2lzdHJvVXN1YXJpby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/AsignarCitas.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/AsignarCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxBc2lnbmFyQ2l0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/Citas.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/Citas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxDaXRhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/CitasEnProceso.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/CitasEnProceso.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxDaXRhc0VuUHJvY2Vzby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/EstadoCitas.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/EstadoCitas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxFc3RhZG9DaXRhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/Historial.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/Historial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxIaXN0b3JpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/PaqueteAsignado.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/PaqueteAsignado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxQYXF1ZXRlQXNpZ25hZG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Cita/RegistrarCita.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Cita/RegistrarCita.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0YVxSZWdpc3RyYXJDaXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Home/Index.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Home/IndexEmpleado.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Home/IndexEmpleado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleEVtcGxlYWRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Home/Privacy.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Notificacion/Notificaciones.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Notificacion/Notificaciones.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2FjaW9uXE5vdGlmaWNhY2lvbmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Notificacion/RegistrarNotificacion.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Notificacion/RegistrarNotificacion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2FjaW9uXFJlZ2lzdHJhck5vdGlmaWNhY2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/Administracion.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/Administracion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcQWRtaW5pc3RyYWNpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/AdministracionCliente.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/AdministracionCliente.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcQWRtaW5pc3RyYWNpb25DbGllbnRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/ClinicaOrigen.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/ClinicaOrigen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcQ2xpbmljYU9yaWdlbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/Configuracion.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/Configuracion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcQ29uZmlndXJhY2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/ConfiguracionAdmin.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/ConfiguracionAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcQ29uZmlndXJhY2lvbkFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/ListaSucursal.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/ListaSucursal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcTGlzdGFTdWN1cnNhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/Notificaciones.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/Notificaciones.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcTm90aWZpY2FjaW9uZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/NotificacionesAdmin.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/NotificacionesAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcTm90aWZpY2FjaW9uZXNBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/Pagos.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/Pagos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcUGFnb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/RegistrarPago.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/RegistrarPago.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcUmVnaXN0cmFyUGFnby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Personal/RegistroSucursal.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Personal/RegistroSucursal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWxcUmVnaXN0cm9TdWN1cnNhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/Error.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/Citas.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/Citas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcQ2l0YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/CitasEnProceso.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/CitasEnProceso.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcQ2l0YXNFblByb2Nlc28uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/Configuracion.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/Configuracion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcQ29uZmlndXJhY2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/DetallesDeLaCita.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/DetallesDeLaCita.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcRGV0YWxsZXNEZUxhQ2l0YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/EstadoCitass.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/EstadoCitass.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcRXN0YWRvQ2l0YXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/Historial.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/Historial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcSGlzdG9yaWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/Notificaciones.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/Notificaciones.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcTm90aWZpY2FjaW9uZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioCliente/Pagos.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioCliente/Pagos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb0NsaWVudGVcUGFnb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioTransportista/Configuracion.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioTransportista/Configuracion.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1RyYW5zcG9ydGlzdGFcQ29uZmlndXJhY2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/UsuarioTransportista/Transportes.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/UsuarioTransportista/Transportes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb1RyYW5zcG9ydGlzdGFcVHJhbnNwb3J0ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/_ViewImports.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/_ViewStart.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/_Layout.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-709v5g0hbe
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/_LayoutCitasHistorial.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/_LayoutCitasHistorial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDaXRhc0hpc3RvcmlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-ob75nptnwq
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/_LayoutClientes.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/_LayoutClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDbGllbnRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-wf7eeatj9j
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/_LayoutTransportistas.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/_LayoutTransportistas.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUcmFuc3BvcnRpc3Rhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-y1onzxrdxo
 
-[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebastián/ProyectoFinal/FrontEnd/Views/Shared/_LayoutUsuarios.cshtml]
+[C:/Users/danie/source/repos/Avanzada en web/ProyectoSebas Copia/FrontEnd/Views/Shared/_LayoutUsuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRVc3Vhcmlvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-sd5a00pxme
