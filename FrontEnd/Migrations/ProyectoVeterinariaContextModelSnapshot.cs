@@ -305,11 +305,11 @@ namespace FrontEnd.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("apellido");
 
-                    b.Property<string>("Contrasenna")
+                    b.Property<string>("Contrasena")
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)")
-                        .HasColumnName("contrasenna");
+                        .HasColumnName("Contrasena");
 
                     b.Property<string>("Correo")
                         .HasMaxLength(100)
@@ -368,12 +368,12 @@ namespace FrontEnd.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("apellido");
 
-                    b.Property<string>("Contrasenna")
+                    b.Property<string>("Contrasena")
                         .IsRequired()
                         .HasMaxLength(255)
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)")
-                        .HasColumnName("contrasenna");
+                        .HasColumnName("Contrasena");
 
                     b.Property<string>("Correo")
                         .IsRequired()

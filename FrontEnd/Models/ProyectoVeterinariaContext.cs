@@ -233,10 +233,10 @@ public partial class ProyectoVeterinariaContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("apellido");
-            entity.Property(e => e.Contrasenna)
+            entity.Property(e => e.Contrasena)
                 .HasMaxLength(255) // Asumiendo hash
                 .IsUnicode(false)
-                .HasColumnName("contrasenna");
+                .HasColumnName("Contrasena");
             entity.Property(e => e.Correo)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -273,10 +273,10 @@ public partial class ProyectoVeterinariaContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("apellido");
-            entity.Property(e => e.Contrasenna)
+            entity.Property(e => e.Contrasena)
                 .HasMaxLength(255) // Asumiendo hash
                 .IsUnicode(false)
-                .HasColumnName("contrasenna");
+                .HasColumnName("Contrasena");
             entity.Property(e => e.Correo)
                 .HasMaxLength(100)
                 .IsUnicode(false)

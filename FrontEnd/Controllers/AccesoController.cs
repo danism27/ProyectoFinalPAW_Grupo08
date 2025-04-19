@@ -58,7 +58,7 @@ namespace FrontEnd.Controllers
                     Nombre = modelo.Nombre,
                     Apellido = modelo.PrimerApellido + " " + modelo.SegundoApellido,
                     Correo = modelo.Correo,
-                    Contrasenna = modelo.Contrasena,
+                    Contrasena = modelo.Contrasena,
                     Telefono = modelo.TelefonoPrincipal,
                     IdRol = modelo.IdRol,
                     IdClinica = modelo.IdSucursal
@@ -88,7 +88,7 @@ namespace FrontEnd.Controllers
             VerificarSesion();
             if (ModelState.IsValid)
             {
-                var usuario = _context.Personal.FirstOrDefault(u => u.Correo == modelo.Correo && u.Contrasenna == modelo.Contrasena);
+                var usuario = _context.Personal.FirstOrDefault(u => u.Correo == modelo.Correo && u.Contrasena == modelo.Contrasena);
                 if (usuario != null)
                 {
                     HttpContext.Session.SetString("UsuarioId", usuario.IdPersonal.ToString());
@@ -131,7 +131,7 @@ namespace FrontEnd.Controllers
                     Nombre = modelo.Nombre,
                     Apellido = modelo.PrimerApellido + " " + modelo.SegundoApellido,
                     Correo = modelo.Correo,
-                    Contrasenna = modelo.Contrasena,
+                    Contrasena = modelo.Contrasena,
                     Telefono = modelo.TelefonoPrincipal,
                     IdRol = modelo.IdRol
                 };
@@ -160,7 +160,7 @@ namespace FrontEnd.Controllers
             VerificarSesion();
             if (ModelState.IsValid)
             {
-                var cliente = _context.Propietarios.FirstOrDefault(u => u.Correo == modelo.Correo && u.Contrasenna == modelo.Contrasena);
+                var cliente = _context.Propietarios.FirstOrDefault(u => u.Correo == modelo.Correo && u.Contrasena == modelo.Contrasena);
                 if (cliente != null)
                 {
                     HttpContext.Session.SetString("ClienteId", cliente.IdPropietario.ToString());
@@ -209,7 +209,7 @@ namespace FrontEnd.Controllers
                 await _correoService.EnviarCorreo(
                     cliente.Correo,
                     "Código de seguridad",
-                    $"Hola {cliente.Nombre}, este es tu código de seguridad: {cliente.Contrasenna}"
+                    $"Hola {cliente.Nombre}, este es tu código de seguridad: {cliente.Contrasena}"
                 );
                 return RedirectToAction("EnviarContrasenaNueva", cliente);
             }
@@ -230,15 +230,15 @@ namespace FrontEnd.Controllers
         public async Task<IActionResult> EnviarContrasenaAleatoria(Propietario clienteRecibido)
         {
             var cliente = _context.Propietarios.FirstOrDefault(u => u.IdPropietario == clienteRecibido.IdPropietario);
-            if (cliente != null && cliente.Contrasenna == clienteRecibido.Contrasenna)
+            if (cliente != null && cliente.Contrasena == clienteRecibido.Contrasena)
             {
                 await _correoService.EnviarCorreo(
                     cliente.Correo,
                     "Contraseña temporal",
-                    $"Hola {cliente.Nombre}, tu nueva contraseña temporal es: {clienteRecibido.Contrasenna}"
+                    $"Hola {cliente.Nombre}, tu nueva contraseña temporal es: {clienteRecibido.Contrasena}"
                 );
 
-                cliente.Contrasenna = clienteRecibido.Contrasenna;
+                cliente.Contrasena = clienteRecibido.Contrasena;
                 _context.SaveChanges();
 
                 TempData["MensajeContrasenaTemporalEnviada"] = "Contraseña temporal enviada a su correo.";

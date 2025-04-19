@@ -25,8 +25,8 @@ public partial class Personal
     public string? Correo { get; set; }
 
     [StringLength(255)]
-    [Column("contrasenna")]
-    public string? Contrasenna { get; set; }
+    [Column("Contrasena")]
+    public string? Contrasena { get; set; }
 
     [StringLength(20)]
     [Column("telefono")]

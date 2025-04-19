@@ -48,7 +48,7 @@ namespace FrontEnd.Migrations
                     nombre = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     apellido = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     correo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
-                    contrasenna = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
+                    Contrasena = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     telefono = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     foto_perfil = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     id_rol = table.Column<int>(type: "int", nullable: true),
@@ -78,7 +78,7 @@ namespace FrontEnd.Migrations
                     nombre = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     apellido = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     correo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    contrasenna = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
+                    Contrasena = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: false),
                     telefono = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     id_rol = table.Column<int>(type: "int", nullable: true)
                 },

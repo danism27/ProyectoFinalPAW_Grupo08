@@ -71,7 +71,7 @@ namespace FrontEnd.Controllers
         // POST: UsuarioPersonal/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // Bind con propiedades correctas (Apellido singular, sin Cedula, Direccion, Especialidad, Contrasenna)
+        // Bind con propiedades correctas (Apellido singular, sin Cedula, Direccion, Especialidad, Contrasena)
         public async Task<IActionResult> Create([Bind("IdPersonal,Nombre,Apellido,Correo,Telefono,IdRol,IdClinica")] Personal personal)
         {
             // Quitar navegaciones y contraseña
@@ -81,7 +81,7 @@ namespace FrontEnd.Controllers
             ModelState.Remove("Notificaciones");
             ModelState.Remove("CitaIdVeterinarioAsignadoNavigations");
             ModelState.Remove("CitaPersonalClinicas");
-            ModelState.Remove("Contrasenna");
+            ModelState.Remove("Contrasena");
 
             if (ModelState.IsValid)
             {
@@ -137,7 +137,7 @@ namespace FrontEnd.Controllers
             ModelState.Remove("IdRolNavigation");
             ModelState.Remove("IdClinicaNavigation");
             // ... (quitar otras navegaciones como en Create) ...
-            ModelState.Remove("Contrasenna");
+            ModelState.Remove("Contrasena");
 
             if (ModelState.IsValid)
             {

@@ -72,7 +72,7 @@ namespace FrontEnd.Controllers
         [ValidateAntiForgeryToken]
         // *** CORREGIDO: Ajusta Bind a propiedades existentes. Quita Contraseña, Cedula, Direccion, Especialidad ***
         public async Task<IActionResult> Create([Bind("IdPersonal,Nombre,Apellido,Correo,Telefono,IdRol,IdClinica")] Personal personal)
-        // Nota: Se asume que 'Contrasenna' se establece en un proceso de registro dedicado.
+        // Nota: Se asume que 'Contrasena' se establece en un proceso de registro dedicado.
         {
             // Quitar propiedades de navegación y contraseña
             ModelState.Remove("IdRolNavigation");
@@ -81,14 +81,14 @@ namespace FrontEnd.Controllers
             ModelState.Remove("Notificaciones");
             ModelState.Remove("CitaIdVeterinarioAsignadoNavigations");
             ModelState.Remove("CitaPersonalClinicas");
-            ModelState.Remove("Contrasenna");
+            ModelState.Remove("Contrasena");
 
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Lógica de Hashing de contraseña iría aquí si aplica
-                    // personal.Contrasenna = HashPassword(contraseñaDelFormulario);
+                    // personal.Contrasena = HashPassword(contraseñaDelFormulario);
 
                     _context.Add(personal);
                     await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace FrontEnd.Controllers
             ModelState.Remove("Notificaciones");
             ModelState.Remove("CitaIdVeterinarioAsignadoNavigations");
             ModelState.Remove("CitaPersonalClinicas");
-            ModelState.Remove("Contrasenna");
+            ModelState.Remove("Contrasena");
 
             if (ModelState.IsValid)
             {

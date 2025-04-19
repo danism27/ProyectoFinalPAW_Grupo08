@@ -235,7 +235,7 @@ namespace FrontEnd.Controllers
                 string codigoSeguridad = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 8)
                     .Select(s => s[random.Next(s.Length)]).ToArray());
 
-                propietario.Contrasenna = codigoSeguridad;
+                propietario.Contrasena = codigoSeguridad;
                 await _context.SaveChangesAsync();
 
                 string emailReceiver = propietario.Correo;
@@ -272,7 +272,7 @@ namespace FrontEnd.Controllers
                 string contrasenaTemporal = new string(Enumerable.Repeat("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 8)
                     .Select(s => s[random.Next(s.Length)]).ToArray());
 
-                propietario.Contrasenna = contrasenaTemporal;
+                propietario.Contrasena = contrasenaTemporal;
                 await _context.SaveChangesAsync();
 
                 string emailReceiver = propietario.Correo;
