@@ -1,24 +1,16 @@
-/******* Bootstrap Theming ********/
-
-$primary: #C5161D;
-$secondary: #F2F2F4;
+$primary: #2A9D8F;
+$secondary: #F8F7F5;
 $light: #FFFFFF;
-$dark: #1F1F2E;
+$dark: #1F2B3E;
 
 $font-family-sans-serif: 'Poppins', sans-serif;
-
-$body-color: #757575;
-
+$body-color: #6C757D;
 $headings-color: $dark;
-
 $enable-responsive-font-sizes: true;
-
-$enable-rounded: false;
+$enable-rounded: true;
 
 @import "bootstrap/scss/bootstrap";
 
-
-/********** Template CSS ************/
 .font-weight-black {
     font-weight: 900 !important;
 }
@@ -35,7 +27,7 @@ h3,
 }
 
 h4,
-h5
+h5,
 .font-weight-semi-bold {
     font-weight: 600 !important;
 }
@@ -68,7 +60,6 @@ p,
     padding-left: 0;
     padding-right: 0;
     text-align: center;
-    border-radius: 36px;
 }
 
 .back-to-top {
@@ -87,7 +78,7 @@ p,
     }
 
     100% {
-        transform: translateY(-15px);
+        transform: translateY(-10px);
     }
 }
 
@@ -97,16 +88,17 @@ p,
     }
 
     100% {
-        transform: translateY(-15px);
+        transform: translateY(-10px);
     }
 }
 
 .navbar-light .navbar-nav .nav-link {
-    padding: 30px 15px;
+    padding: 25px 15px;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: $dark;
     outline: none;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -116,14 +108,14 @@ p,
 }
 
 @media (max-width: 991.98px) {
-    .navbar-light .navbar-nav .nav-link  {
+    .navbar-light .navbar-nav .nav-link {
         padding: 10px 15px;
     }
 }
 
 .jumbotron {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../img/header.jpg);
-    background-position: top;
+    background: linear-gradient(rgba($dark, 0.6), rgba($dark, 0.6)), url(../img/veterinary-hero.jpg);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -134,7 +126,6 @@ p,
     box-sizing: content-box;
     width: 16px;
     height: 22px;
-    border-radius: 50%;
     border: none;
     outline: none !important;
     padding: 18px 20px 18px 28px;
@@ -151,7 +142,6 @@ p,
     width: 60px;
     height: 60px;
     background: $primary;
-    border-radius: 50%;
     animation: pulse-border 1500ms ease-out infinite;
 }
 
@@ -159,129 +149,4 @@ p,
     content: "";
     position: absolute;
     z-index: 1;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    display: block;
-    width: 60px;
-    height: 60px;
-    background: $primary;
-    border-radius: 50%;
-    transition: all 200ms;
-}
-
-.btn-play:hover:after {
-    background: darken($primary, 10%);
-}
-
-.btn-play span {
-    display: block;
-    position: relative;
-    z-index: 3;
-    width: 0;
-    height: 0;
-    border-left: 16px solid $dark;
-    border-top: 11px solid transparent;
-    border-bottom: 11px solid transparent;
-}
-
-@keyframes pulse-border {
-    0% {
-        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
-        opacity: 0;
-    }
-}
-
-#videoModal .modal-dialog {
-    position: relative;
-    max-width: 800px;
-    margin: 60px auto 0 auto;
-}
-
-#videoModal .modal-body {
-    position: relative;
-    padding: 0px;
-}
-
-#videoModal .close {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    right: 0px;
-    top: -30px;
-    z-index: 999;
-    font-size: 30px;
-    font-weight: normal;
-    color: #ffffff;
-    background: #000000;
-    opacity: 1;
-}
-
-.team img {
-    position: relative;
-    z-index: 1;
-}
-
-.team .team-text {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    bottom: 0px;
-    left: 0;
-    border-bottom: 5px solid $primary;
-    transition: .5s;
-}
-
-.team:hover .team-text {
-    bottom: 100px;
-}
-
-.team .team-social {
-    position: absolute;
-    width: 100%;
-    height: 100px;
-    bottom: -100px;
-    left: 0;
-    transition: .5s;
-}
-
-.team:hover .team-social {
-    bottom: 0;
-}
-
-.testimonial-carousel .owl-item {
-    opacity: .2;
-}
-
-.testimonial-carousel .owl-item.center {
-    opacity: 1;
-}
-
-.testimonial-carousel .owl-dots {
-    margin-top: 25px;
-    text-align: center;
-}
-
-.testimonial-carousel .owl-dot {
-    display: inline-block;
-    margin: 0 5px;
-    width: 12px;
-    height: 12px;
-    border-radius: 10px;
-    background: #dddddd;
-}
-
-.testimonial-carousel .owl-dot.active {
-    background: $primary;
-}
-
-.contact-form .help-block ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
 }

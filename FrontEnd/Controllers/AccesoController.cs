@@ -61,7 +61,7 @@ namespace FrontEnd.Controllers
                     Contrasena = modelo.Contrasena,
                     Telefono = modelo.TelefonoPrincipal,
                     IdRol = modelo.IdRol,
-                    IdClinica = modelo.IdSucursal
+                    IdClinica = modelo.IdClinica
                 };
 
                 _context.Personal.Add(nuevoUsuario);

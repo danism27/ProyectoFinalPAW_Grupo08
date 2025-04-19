@@ -41,6 +41,14 @@
       "PackagePath": "staticwebassets\\assets\\img\\icono.png"
     },
     {
+      "Id": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icono_clinica.png"
+    },
+    {
+      "Id": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica2.png",
+      "PackagePath": "staticwebassets\\assets\\img\\icono_clinica2.png"
+    },
+    {
       "Id": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\profile.jpg",
       "PackagePath": "staticwebassets\\assets\\img\\profile.jpg"
     },

@@ -7,6 +7,8 @@ wwwroot\assets\img\blog-2.jpg
 wwwroot\assets\img\feature.jpg
 wwwroot\assets\img\header.jpg
 wwwroot\assets\img\icono.png
+wwwroot\assets\img\icono_clinica.png
+wwwroot\assets\img\icono_clinica2.png
 wwwroot\assets\img\profile.jpg
 wwwroot\assets\img\team-1.jpg
 wwwroot\assets\img\team-2.jpg

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3W4YimkWxY9lvO8VbGEbIvs4+MSn+dm0zYYf8zSjvX8=",
+  "Hash": "4pF/+5ASiT4u+sjQnmH6iJzbqscX2Q+43k+8AfboORM=",
   "Source": "FrontEnd",
   "BasePath": "_content/FrontEnd",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "1mumuzihi6",
-      "Integrity": "hxEf0qQoGefsyvIBMiBQcDWvdKuXQqKBx4pfaTO5L7M=",
+      "Fingerprint": "d7pvcr27jr",
+      "Integrity": "WUkqJ6TQa/Y+Xr4VtQeNfZHOOMxazkBV8hW6QowpkCk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\style.css"
@@ -246,6 +246,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\icono.png"
+    },
+    {
+      "Identity": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica.png",
+      "SourceId": "FrontEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\",
+      "BasePath": "_content/FrontEnd",
+      "RelativePath": "assets/img/icono_clinica#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rgj2n9bc9o",
+      "Integrity": "C7oYPBXQIPsdiA0R+Yk832yJvJpLE4yGCT0RaB2TQ/4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icono_clinica.png"
+    },
+    {
+      "Identity": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica2.png",
+      "SourceId": "FrontEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\",
+      "BasePath": "_content/FrontEnd",
+      "RelativePath": "assets/img/icono_clinica2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3s2zcpj6vj",
+      "Integrity": "LccKe2467ZX/FEvmJNOz0LHxJgc9w06dDZqX1spXSgI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\icono_clinica2.png"
     },
     {
       "Identity": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\profile.jpg",
@@ -2782,8 +2824,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "en7ocld35x",
-      "Integrity": "RjN0j5tQ3HH7k8eHlDnTwdM/WicLn3bi2Sj3t3/1Vg8=",
+      "Fingerprint": "qx4jlyejl3",
+      "Integrity": "vjyU9gMaPF8+8vEzS8mNplI8x3WG5Wjjx62cTIg/FMI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\scss\\style.scss"
@@ -2803,8 +2845,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "k5cby9tuo3",
-      "Integrity": "SIhDntcqgi8C5vWpfCUNGekWL9mgpVqrcOe/6JLWp2g=",
+      "Fingerprint": "fc27fayz74",
+      "Integrity": "n765B52ZxTt+1e7YSFq3/DKgIBCXFgvv/reocp7+oTo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -4261,51 +4303,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "assets/css/style.1mumuzihi6.css",
-      "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\css\\style.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "185384"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hxEf0qQoGefsyvIBMiBQcDWvdKuXQqKBx4pfaTO5L7M=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 21:36:50 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1mumuzihi6"
-        },
-        {
-          "Name": "label",
-          "Value": "assets/css/style.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-hxEf0qQoGefsyvIBMiBQcDWvdKuXQqKBx4pfaTO5L7M="
-        }
-      ]
-    },
-    {
       "Route": "assets/css/style.css",
       "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\css\\style.css",
       "Selectors": [],
@@ -4316,7 +4313,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "185384"
+          "Value": "185390"
         },
         {
           "Name": "Content-Type",
@@ -4324,11 +4321,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hxEf0qQoGefsyvIBMiBQcDWvdKuXQqKBx4pfaTO5L7M=\""
+          "Value": "\"WUkqJ6TQa/Y+Xr4VtQeNfZHOOMxazkBV8hW6QowpkCk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 21:36:50 GMT"
+          "Value": "Sat, 19 Apr 2025 06:47:01 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4338,7 +4335,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hxEf0qQoGefsyvIBMiBQcDWvdKuXQqKBx4pfaTO5L7M="
+          "Value": "sha256-WUkqJ6TQa/Y+Xr4VtQeNfZHOOMxazkBV8hW6QowpkCk="
+        }
+      ]
+    },
+    {
+      "Route": "assets/css/style.d7pvcr27jr.css",
+      "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "185390"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WUkqJ6TQa/Y+Xr4VtQeNfZHOOMxazkBV8hW6QowpkCk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:47:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d7pvcr27jr"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/css/style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WUkqJ6TQa/Y+Xr4VtQeNfZHOOMxazkBV8hW6QowpkCk="
         }
       ]
     },
@@ -4995,6 +5037,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-d831QYVUI0G+yElOwGeG7GJidMfICPspz/dbtCcdP+M="
+        }
+      ]
+    },
+    {
+      "Route": "assets/img/icono_clinica.png",
+      "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37817"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C7oYPBXQIPsdiA0R+Yk832yJvJpLE4yGCT0RaB2TQ/4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:52:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-C7oYPBXQIPsdiA0R+Yk832yJvJpLE4yGCT0RaB2TQ/4="
+        }
+      ]
+    },
+    {
+      "Route": "assets/img/icono_clinica.rgj2n9bc9o.png",
+      "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37817"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C7oYPBXQIPsdiA0R+Yk832yJvJpLE4yGCT0RaB2TQ/4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:52:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rgj2n9bc9o"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/img/icono_clinica.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-C7oYPBXQIPsdiA0R+Yk832yJvJpLE4yGCT0RaB2TQ/4="
+        }
+      ]
+    },
+    {
+      "Route": "assets/img/icono_clinica2.3s2zcpj6vj.png",
+      "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83149"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LccKe2467ZX/FEvmJNOz0LHxJgc9w06dDZqX1spXSgI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:54:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3s2zcpj6vj"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/img/icono_clinica2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LccKe2467ZX/FEvmJNOz0LHxJgc9w06dDZqX1spXSgI="
+        }
+      ]
+    },
+    {
+      "Route": "assets/img/icono_clinica2.png",
+      "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\img\\icono_clinica2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83149"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LccKe2467ZX/FEvmJNOz0LHxJgc9w06dDZqX1spXSgI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 19 Apr 2025 06:54:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LccKe2467ZX/FEvmJNOz0LHxJgc9w06dDZqX1spXSgI="
         }
       ]
     },
@@ -14839,7 +15045,7 @@
       ]
     },
     {
-      "Route": "assets/scss/style.en7ocld35x.scss",
+      "Route": "assets/scss/style.qx4jlyejl3.scss",
       "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\scss\\style.scss",
       "Selectors": [],
       "ResponseHeaders": [
@@ -14849,7 +15055,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5182"
+          "Value": "2792"
         },
         {
           "Name": "Content-Type",
@@ -14857,11 +15063,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"RjN0j5tQ3HH7k8eHlDnTwdM/WicLn3bi2Sj3t3/1Vg8=\""
+          "Value": "\"vjyU9gMaPF8+8vEzS8mNplI8x3WG5Wjjx62cTIg/FMI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 21:36:51 GMT"
+          "Value": "Sat, 19 Apr 2025 06:49:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14871,7 +15077,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "en7ocld35x"
+          "Value": "qx4jlyejl3"
         },
         {
           "Name": "label",
@@ -14879,7 +15085,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-RjN0j5tQ3HH7k8eHlDnTwdM/WicLn3bi2Sj3t3/1Vg8="
+          "Value": "sha256-vjyU9gMaPF8+8vEzS8mNplI8x3WG5Wjjx62cTIg/FMI="
         }
       ]
     },
@@ -14894,7 +15100,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5182"
+          "Value": "2792"
         },
         {
           "Name": "Content-Type",
@@ -14902,11 +15108,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"RjN0j5tQ3HH7k8eHlDnTwdM/WicLn3bi2Sj3t3/1Vg8=\""
+          "Value": "\"vjyU9gMaPF8+8vEzS8mNplI8x3WG5Wjjx62cTIg/FMI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 21:36:51 GMT"
+          "Value": "Sat, 19 Apr 2025 06:49:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14916,7 +15122,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-RjN0j5tQ3HH7k8eHlDnTwdM/WicLn3bi2Sj3t3/1Vg8="
+          "Value": "sha256-vjyU9gMaPF8+8vEzS8mNplI8x3WG5Wjjx62cTIg/FMI="
         }
       ]
     },
@@ -14931,7 +15137,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "380"
+          "Value": "2287"
         },
         {
           "Name": "Content-Type",
@@ -14939,11 +15145,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SIhDntcqgi8C5vWpfCUNGekWL9mgpVqrcOe/6JLWp2g=\""
+          "Value": "\"n765B52ZxTt+1e7YSFq3/DKgIBCXFgvv/reocp7+oTo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 21:36:51 GMT"
+          "Value": "Sat, 19 Apr 2025 06:49:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14953,12 +15159,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SIhDntcqgi8C5vWpfCUNGekWL9mgpVqrcOe/6JLWp2g="
+          "Value": "sha256-n765B52ZxTt+1e7YSFq3/DKgIBCXFgvv/reocp7+oTo="
         }
       ]
     },
     {
-      "Route": "css/site.k5cby9tuo3.css",
+      "Route": "css/site.fc27fayz74.css",
       "AssetFile": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -14968,7 +15174,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "380"
+          "Value": "2287"
         },
         {
           "Name": "Content-Type",
@@ -14976,11 +15182,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SIhDntcqgi8C5vWpfCUNGekWL9mgpVqrcOe/6JLWp2g=\""
+          "Value": "\"n765B52ZxTt+1e7YSFq3/DKgIBCXFgvv/reocp7+oTo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 08 Apr 2025 21:36:51 GMT"
+          "Value": "Sat, 19 Apr 2025 06:49:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14990,7 +15196,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "k5cby9tuo3"
+          "Value": "fc27fayz74"
         },
         {
           "Name": "label",
@@ -14998,7 +15204,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-SIhDntcqgi8C5vWpfCUNGekWL9mgpVqrcOe/6JLWp2g="
+          "Value": "sha256-n765B52ZxTt+1e7YSFq3/DKgIBCXFgvv/reocp7+oTo="
         }
       ]
     },
