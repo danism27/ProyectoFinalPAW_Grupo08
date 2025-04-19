@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\controllers\\usuarioclientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\controllers\\usuarioclientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\models\\propietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\models\\propietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\usuariocliente\\estadocitas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\usuariocliente\\estadocitas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\usuariotransportista\\transportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\usuariotransportista\\transportes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\shared\\_layoutclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\shared\\_layoutclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\personal\\pagos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\personal\\pagos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\usuariocliente\\estadocitass.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\usuariocliente\\estadocitass.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\wwwroot\\assets\\scss\\style.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
@@ -55,10 +67,6 @@
       "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\models\\registromodelousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\models\\propietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\models\\propietario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|c:\\users\\danie\\source\\repos\\avanzada en web\\proyectofinalpaw_grupo08\\frontend\\views\\shared\\_layoutcitashistorial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5F32982E-66DB-4978-9E1F-837488723E32}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\views\\shared\\_layoutcitashistorial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -78,37 +86,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Pagos.cshtml",
-              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Personal\\Pagos.cshtml",
-              "RelativeDocumentMoniker": "FrontEnd\\Views\\Personal\\Pagos.cshtml",
-              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Personal\\Pagos.cshtml",
-              "RelativeToolTip": "FrontEnd\\Views\\Personal\\Pagos.cshtml",
-              "ViewState": "AgIAADcAAAAAAAAAAAAAADcAAABNAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UsuarioClienteController.cs",
+              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Controllers\\UsuarioClienteController.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Controllers\\UsuarioClienteController.cs",
+              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Controllers\\UsuarioClienteController.cs",
+              "RelativeToolTip": "FrontEnd\\Controllers\\UsuarioClienteController.cs",
+              "ViewState": "AgIAAH0BAAAAAAAAAAAiwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T07:11:55.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Transportes.cshtml",
+              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\UsuarioTransportista\\Transportes.cshtml",
+              "RelativeDocumentMoniker": "FrontEnd\\Views\\UsuarioTransportista\\Transportes.cshtml",
+              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\UsuarioTransportista\\Transportes.cshtml",
+              "RelativeToolTip": "FrontEnd\\Views\\UsuarioTransportista\\Transportes.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-19T06:51:14.672Z",
+              "WhenOpened": "2025-04-19T07:00:47.159Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EstadoCitass.cshtml",
-              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\UsuarioCliente\\EstadoCitass.cshtml",
-              "RelativeDocumentMoniker": "FrontEnd\\Views\\UsuarioCliente\\EstadoCitass.cshtml",
-              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\UsuarioCliente\\EstadoCitass.cshtml",
-              "RelativeToolTip": "FrontEnd\\Views\\UsuarioCliente\\EstadoCitass.cshtml",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAAAGcAAABHAAAAAAAAAA==",
+              "Title": "EstadoCitas.cshtml",
+              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\UsuarioCliente\\EstadoCitas.cshtml",
+              "RelativeDocumentMoniker": "FrontEnd\\Views\\UsuarioCliente\\EstadoCitas.cshtml",
+              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\UsuarioCliente\\EstadoCitas.cshtml",
+              "RelativeToolTip": "FrontEnd\\Views\\UsuarioCliente\\EstadoCitas.cshtml",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAkwKYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-19T06:51:06.836Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "stylePaqueteHistorial.css",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\cssPaqueteHistorial\\stylePaqueteHistorial.css",
               "RelativeDocumentMoniker": "FrontEnd\\wwwroot\\assets\\cssPaqueteHistorial\\stylePaqueteHistorial.css",
@@ -116,12 +137,11 @@
               "RelativeToolTip": "FrontEnd\\wwwroot\\assets\\cssPaqueteHistorial\\stylePaqueteHistorial.css",
               "ViewState": "AgIAAHUAAAAAAAAAAAAUwIIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-19T06:25:27.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T06:25:27.674Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "FrontEnd\\wwwroot\\css\\site.css",
@@ -129,12 +149,11 @@
               "RelativeToolTip": "FrontEnd\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAEoAAAAAAAAAAAAgwGwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-19T06:25:00.643Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T06:25:00.643Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "style.scss",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\scss\\style.scss",
               "RelativeDocumentMoniker": "FrontEnd\\wwwroot\\assets\\scss\\style.scss",
@@ -142,12 +161,11 @@
               "RelativeToolTip": "FrontEnd\\wwwroot\\assets\\scss\\style.scss",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
-              "WhenOpened": "2025-04-19T06:21:07.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T06:21:07.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "RegistroUsuario.cshtml",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Acceso\\RegistroUsuario.cshtml",
               "RelativeDocumentMoniker": "FrontEnd\\Views\\Acceso\\RegistroUsuario.cshtml",
@@ -155,12 +173,11 @@
               "RelativeToolTip": "FrontEnd\\Views\\Acceso\\RegistroUsuario.cshtml",
               "ViewState": "AgIAAE8AAAAAAAAAAAAwwDsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-19T06:09:52.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T06:09:52.349Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Personal.cs",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\Personal.cs",
               "RelativeDocumentMoniker": "FrontEnd\\Models\\Personal.cs",
@@ -168,25 +185,49 @@
               "RelativeToolTip": "FrontEnd\\Models\\Personal.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAywEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T06:09:08.416Z",
+              "WhenOpened": "2025-04-19T06:09:08.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Propietario.cs",
+              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\Propietario.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Models\\Propietario.cs",
+              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\Propietario.cs",
+              "RelativeToolTip": "FrontEnd\\Models\\Propietario.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T05:28:35.471Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "Pagos.cshtml",
+              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Personal\\Pagos.cshtml",
+              "RelativeDocumentMoniker": "FrontEnd\\Views\\Personal\\Pagos.cshtml",
+              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Personal\\Pagos.cshtml",
+              "RelativeToolTip": "FrontEnd\\Views\\Personal\\Pagos.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAADcAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-19T06:51:14.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_LayoutClientes.cshtml",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Shared\\_LayoutClientes.cshtml",
               "RelativeDocumentMoniker": "FrontEnd\\Views\\Shared\\_LayoutClientes.cshtml",
               "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Shared\\_LayoutClientes.cshtml",
               "RelativeToolTip": "FrontEnd\\Views\\Shared\\_LayoutClientes.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAACgAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAACoAAABmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-15T04:40:26.604Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "style.css",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\wwwroot\\assets\\css\\style.css",
               "RelativeDocumentMoniker": "FrontEnd\\wwwroot\\assets\\css\\style.css",
@@ -194,12 +235,11 @@
               "RelativeToolTip": "FrontEnd\\wwwroot\\assets\\css\\style.css",
               "ViewState": "AgIAAD0lAAAAAAAAAAAEwEglAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-19T06:26:29.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T06:26:29.327Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "RegistroModeloUsuario.cs",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\RegistroModeloUsuario.cs",
               "RelativeDocumentMoniker": "FrontEnd\\Models\\RegistroModeloUsuario.cs",
@@ -207,12 +247,11 @@
               "RelativeToolTip": "FrontEnd\\Models\\RegistroModeloUsuario.cs",
               "ViewState": "AgIAAE4AAAAAAAAAAAAkwGMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T06:05:41.422Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T06:05:41.422Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "20250419055417_IniciarBD.cs",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Migrations\\20250419055417_IniciarBD.cs",
               "RelativeDocumentMoniker": "FrontEnd\\Migrations\\20250419055417_IniciarBD.cs",
@@ -220,25 +259,11 @@
               "RelativeToolTip": "FrontEnd\\Migrations\\20250419055417_IniciarBD.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T05:54:17.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T05:54:17.215Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "Propietario.cs",
-              "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\Propietario.cs",
-              "RelativeDocumentMoniker": "FrontEnd\\Models\\Propietario.cs",
-              "ToolTip": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\Propietario.cs",
-              "RelativeToolTip": "FrontEnd\\Models\\Propietario.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAkwA8AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T05:28:35.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "AccesoController.cs",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Controllers\\AccesoController.cs",
               "RelativeDocumentMoniker": "FrontEnd\\Controllers\\AccesoController.cs",
@@ -246,12 +271,11 @@
               "RelativeToolTip": "FrontEnd\\Controllers\\AccesoController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T05:23:41.902Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T05:23:41.902Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "RegistroModeloCliente.cs",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Models\\RegistroModeloCliente.cs",
               "RelativeDocumentMoniker": "FrontEnd\\Models\\RegistroModeloCliente.cs",
@@ -259,12 +283,11 @@
               "RelativeToolTip": "FrontEnd\\Models\\RegistroModeloCliente.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAowAsAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T05:23:09.589Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T05:23:09.589Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "_LayoutCitasHistorial.cshtml",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Shared\\_LayoutCitasHistorial.cshtml",
               "RelativeDocumentMoniker": "FrontEnd\\Views\\Shared\\_LayoutCitasHistorial.cshtml",
@@ -276,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "FrontEnd\\Views\\Shared\\_Layout.cshtml",
@@ -288,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\danie\\source\\repos\\Avanzada en web\\ProyectoFinalPAW_Grupo08\\FrontEnd\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "FrontEnd\\Views\\Home\\Index.cshtml",

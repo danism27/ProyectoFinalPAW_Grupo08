@@ -859,8 +859,8 @@ C:\Users\danie\source\repos\Avanzada en web\ProyectoSebas Copia\FrontEnd\obj\Deb
 C:\Users\danie\source\repos\Avanzada en web\ProyectoSebas Copia\FrontEnd\obj\Debug\net8.0\ref\FrontEnd.dll
 C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\appsettings.json
-C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\FrontEnd.staticwebassets.endpoints.json
 C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\FrontEnd.staticwebassets.runtime.json
+C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\FrontEnd.staticwebassets.endpoints.json
 C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\FrontEnd.exe
 C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\FrontEnd.deps.json
 C:\Users\danie\source\repos\Avanzada en web\ProyectoFinalPAW_Grupo08\FrontEnd\bin\Debug\net8.0\FrontEnd.runtimeconfig.json
