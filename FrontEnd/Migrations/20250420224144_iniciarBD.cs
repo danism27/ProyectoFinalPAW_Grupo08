@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FrontEnd.Migrations
 {
     /// <inheritdoc />
-    public partial class IniciarBD : Migration
+    public partial class iniciarBD : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -233,6 +235,17 @@ namespace FrontEnd.Migrations
                         column: x => x.id_cita,
                         principalTable: "Cita",
                         principalColumn: "id_cita");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rol",
+                columns: new[] { "id_rol", "nombre_rol" },
+                values: new object[,]
+                {
+                    { 1, "Cliente" },
+                    { 2, "Asistente" },
+                    { 3, "Administrador" },
+                    { 4, "Veterinario" }
                 });
 
             migrationBuilder.CreateIndex(

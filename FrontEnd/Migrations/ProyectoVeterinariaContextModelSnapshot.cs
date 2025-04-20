@@ -426,6 +426,28 @@ namespace FrontEnd.Migrations
                         .HasName("PK__Roles__6AB40045C3E61134");
 
                     b.ToTable("Rol", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdRol = 1,
+                            NombreRol = "Cliente"
+                        },
+                        new
+                        {
+                            IdRol = 2,
+                            NombreRol = "Asistente"
+                        },
+                        new
+                        {
+                            IdRol = 3,
+                            NombreRol = "Administrador"
+                        },
+                        new
+                        {
+                            IdRol = 4,
+                            NombreRol = "Veterinario"
+                        });
                 });
 
             modelBuilder.Entity("FrontEnd.Models.Cita", b =>

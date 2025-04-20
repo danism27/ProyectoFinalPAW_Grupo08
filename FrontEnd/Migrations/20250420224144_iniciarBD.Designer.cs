@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FrontEnd.Migrations
 {
     [DbContext(typeof(ProyectoVeterinariaContext))]
-    [Migration("20250419055417_IniciarBD")]
-    partial class IniciarBD
+    [Migration("20250420224144_iniciarBD")]
+    partial class iniciarBD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -429,6 +429,28 @@ namespace FrontEnd.Migrations
                         .HasName("PK__Roles__6AB40045C3E61134");
 
                     b.ToTable("Rol", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            IdRol = 1,
+                            NombreRol = "Cliente"
+                        },
+                        new
+                        {
+                            IdRol = 2,
+                            NombreRol = "Asistente"
+                        },
+                        new
+                        {
+                            IdRol = 3,
+                            NombreRol = "Administrador"
+                        },
+                        new
+                        {
+                            IdRol = 4,
+                            NombreRol = "Veterinario"
+                        });
                 });
 
             modelBuilder.Entity("FrontEnd.Models.Cita", b =>
